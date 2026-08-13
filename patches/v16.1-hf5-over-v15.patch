@@ -1,0 +1,8538 @@
+diff --git a/apktool.yml b/apktool.yml
+index 4d8e355..df67c1c 100644
+--- a/apktool.yml
++++ b/apktool.yml
+@@ -12,8 +12,8 @@ packageInfo:
+   forcedPackageId: 127
+   renameManifestPackage: null
+ versionInfo:
+-  versionCode: 31
+-  versionName: 02.23.01.00
++  versionCode: 37
++  versionName: 02.23.01.00-v16.1-hf5
+ resourcesAreCompressed: false
+ sharedLibrary: false
+ sparseResources: false
+diff --git a/smali/cn/com/titlebar/widget/TitleBar.smali b/smali/cn/com/titlebar/widget/TitleBar.smali
+index c2fc565..0155339 100644
+--- a/smali/cn/com/titlebar/widget/TitleBar.smali
++++ b/smali/cn/com/titlebar/widget/TitleBar.smali
+@@ -5,8 +5,6 @@
+ # interfaces
+ .implements Landroid/view/View$OnClickListener;
+ 
+-
+-# annotations
+ .annotation system Ldalvik/annotation/MemberClasses;
+     value = {
+         Lcn/com/titlebar/widget/TitleBar$a;,
+@@ -14,152 +12,82 @@
+     }
+ .end annotation
+ 
+-
+ # static fields
+ .field public static final A1:I = 0x1
+-
+ .field public static final B1:I = 0x2
+-
+ .field public static final C1:I = 0x3
+-
+ .field public static final D1:I = 0x1
+-
+ .field public static final E1:I = 0x2
+-
+ .field public static final F1:I = 0x3
+-
+ .field public static final G1:I = 0x4
+-
+ .field public static final H1:I = 0x9
+-
+ .field public static final r1:I = 0x0
+-
+ .field public static final s1:I = 0x1
+-
+ .field public static final t1:I = 0x2
+-
+ .field public static final u1:I = 0x3
+-
+ .field public static final v1:I = 0x0
+-
+ .field public static final w1:I = 0x1
+-
+ .field public static final x1:I = 0x2
+-
+ .field public static final y1:I = 0x3
+-
+ .field public static final z1:I
+ 
+-
+ # instance fields
+ .field public A:I
+-
+ .field public B:Ljava/lang/String;
+-
+ .field public C:I
+-
+ .field public D:F
+-
+ .field public Y0:I
+-
+ .field public Z0:I
+-
+ .field public a:Landroid/view/View;
+-
+ .field public a1:I
+-
+ .field public b:Landroid/view/View;
+-
+ .field public b1:Ljava/lang/String;
+-
+ .field public c:Landroid/widget/RelativeLayout;
+-
+ .field public c1:I
+-
+ .field public d:Landroid/widget/TextView;
+-
+ .field public d1:F
+-
+ .field public e:Landroid/widget/ImageButton;
+-
+ .field public e1:Z
+-
+ .field public f:Landroid/view/View;
+-
+ .field public f1:Ljava/lang/String;
+-
+ .field public g:Landroid/widget/TextView;
+-
+ .field public g1:I
+-
+ .field public h:Landroid/widget/ImageButton;
+-
+ .field public h1:F
+-
+ .field public i:Landroid/view/View;
+-
+ .field public i1:I
+-
+ .field public j:Landroid/widget/LinearLayout;
+-
+ .field public j1:I
+-
+ .field public k:Landroid/widget/TextView;
+-
+ .field public k1:I
+-
+ .field public l:Landroid/widget/TextView;
+-
+ .field public l1:I
+-
+ .field public m:Landroid/view/View;
+-
+ .field public m1:Lcn/com/titlebar/widget/TitleBar$a;
+-
+ .field public n:I
+-
+ .field public n1:Lcn/com/titlebar/widget/TitleBar$b;
+-
+ .field public o:I
+-
+ .field public final o1:I
+-
+ .field public p:Z
+-
+ .field public final p1:I
+-
+ .field public q:I
+-
+ .field public q1:J
+-
+ .field public r:F
+-
+ .field public s:I
+-
+ .field public t:Ljava/lang/String;
+-
+ .field public u:I
+-
+ .field public v:F
+-
+ .field public w:I
+-
+ .field public x:F
+-
+ .field public y:I
+-
+ .field public z:I
+ 
+-
+ # direct methods
+ .method public constructor <init>(Landroid/content/Context;)V
+     .registers 3
+ 
+     const/4 v0, 0x0
+-
+-    .line 1
+     invoke-direct {p0, p1, v0}, Lcn/com/titlebar/widget/TitleBar;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
+-
+     return-void
+ .end method
+ 
+@@ -167,3583 +95,483 @@
+     .registers 4
+ 
+     const/4 v0, 0x0
+-
+-    .line 2
+     invoke-direct {p0, p1, p2, v0}, Lcn/com/titlebar/widget/TitleBar;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
+-
+     return-void
+ .end method
+ 
+ .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
+-    .registers 6
+-
+-    .line 3
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 4
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 5
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 6
+-    nop
+-
+-    nop
+-
+-    .line 7
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 8
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 9
+-    nop
++    .registers 5
+ 
+-    nop
++    invoke-direct {p0, p1, p2, p3}, Landroid/widget/RelativeLayout;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
+ 
+-    nop
++    const/4 v0, 0x0
++    iput v0, p0, Lcn/com/titlebar/widget/TitleBar;->o1:I
++    iput v0, p0, Lcn/com/titlebar/widget/TitleBar;->p1:I
+ 
+-    nop
++    invoke-virtual {p0, p1}, Lcn/com/titlebar/widget/TitleBar;->b(Landroid/content/Context;)V
++    invoke-virtual {p0, p1, p2}, Lcn/com/titlebar/widget/TitleBar;->g(Landroid/content/Context;Landroid/util/AttributeSet;)V
++    return-void
+ .end method
+ 
+-
+ # virtual methods
+ .method public final a()I
+     .registers 2
+ 
+     invoke-static {}, Landroid/view/View;->generateViewId()I
+-
+     move-result v0
+-
+     return v0
+ .end method
+ 
+ .method public final b(Landroid/content/Context;)V
+     .registers 8
+ 
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 3
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 4
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 5
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 6
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 7
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 8
+-    nop
+-
+-    nop
++    invoke-virtual {p1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
++    move-result-object v0
++    const v1, 0x7f07012d
++    invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
++    move-result v2
++    invoke-virtual {p0, v2}, Landroid/view/View;->setMinimumHeight(I)V
++
++    new-instance v0, Landroid/widget/ImageButton;
++    invoke-direct {v0, p1}, Landroid/widget/ImageButton;-><init>(Landroid/content/Context;)V
++    iput-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->e:Landroid/widget/ImageButton;
++    const/4 v1, 0x0
++    invoke-virtual {v0, v1}, Landroid/view/View;->setBackgroundColor(I)V
++    const v1, 0x7f0f0032
++    invoke-virtual {v0, v1}, Landroid/widget/ImageButton;->setImageResource(I)V
++    invoke-virtual {v0, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
++    const/16 v1, 0x8
++    invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
++    new-instance v3, Landroid/widget/RelativeLayout$LayoutParams;
++    const/4 v4, -0x2
++    invoke-direct {v3, v2, v2}, Landroid/widget/RelativeLayout$LayoutParams;-><init>(II)V
++    const/16 v5, 0x9
++    invoke-virtual {v3, v5}, Landroid/widget/RelativeLayout$LayoutParams;->addRule(I)V
++    const/16 v5, 0xf
++    invoke-virtual {v3, v5}, Landroid/widget/RelativeLayout$LayoutParams;->addRule(I)V
++    invoke-virtual {p0, v0, v3}, Landroid/view/ViewGroup;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
++
++    new-instance v0, Landroid/widget/TextView;
++    invoke-direct {v0, p1}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
++    iput-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->d:Landroid/widget/TextView;
++    const/16 v3, 0x11
++    invoke-virtual {v0, v3}, Landroid/widget/TextView;->setGravity(I)V
++    invoke-virtual {v0, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
++    invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
++    new-instance v3, Landroid/widget/RelativeLayout$LayoutParams;
++    invoke-direct {v3, v4, v2}, Landroid/widget/RelativeLayout$LayoutParams;-><init>(II)V
++    const/16 v5, 0x9
++    invoke-virtual {v3, v5}, Landroid/widget/RelativeLayout$LayoutParams;->addRule(I)V
++    invoke-virtual {p0, v0, v3}, Landroid/view/ViewGroup;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
++
++    new-instance v0, Landroid/widget/LinearLayout;
++    invoke-direct {v0, p1}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
++    iput-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->j:Landroid/widget/LinearLayout;
++    const/4 v3, 0x1
++    invoke-virtual {v0, v3}, Landroid/widget/LinearLayout;->setOrientation(I)V
++    const/16 v3, 0x11
++    invoke-virtual {v0, v3}, Landroid/widget/LinearLayout;->setGravity(I)V
++    invoke-virtual {v0, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
++
++    new-instance v3, Landroid/widget/TextView;
++    invoke-direct {v3, p1}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
++    iput-object v3, p0, Lcn/com/titlebar/widget/TitleBar;->k:Landroid/widget/TextView;
++    const/16 v5, 0x11
++    invoke-virtual {v3, v5}, Landroid/widget/TextView;->setGravity(I)V
++    const/high16 v5, 0x41880000    # 17.0f
++    invoke-virtual {v3, v5}, Landroid/widget/TextView;->setTextSize(F)V
++    const/high16 v5, -0x1000000
++    invoke-virtual {v3, v5}, Landroid/widget/TextView;->setTextColor(I)V
++    new-instance v5, Landroid/widget/LinearLayout$LayoutParams;
++    invoke-direct {v5, v4, v4}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
++    invoke-virtual {v0, v3, v5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
++
++    new-instance v3, Landroid/widget/TextView;
++    invoke-direct {v3, p1}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
++    iput-object v3, p0, Lcn/com/titlebar/widget/TitleBar;->l:Landroid/widget/TextView;
++    const/16 v5, 0x11
++    invoke-virtual {v3, v5}, Landroid/widget/TextView;->setGravity(I)V
++    new-instance v5, Landroid/widget/LinearLayout$LayoutParams;
++    invoke-direct {v5, v4, v4}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
++    invoke-virtual {v0, v3, v5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
++
++    new-instance v3, Landroid/widget/RelativeLayout$LayoutParams;
++    invoke-direct {v3, v4, v2}, Landroid/widget/RelativeLayout$LayoutParams;-><init>(II)V
++    const/16 v5, 0xd
++    invoke-virtual {v3, v5}, Landroid/widget/RelativeLayout$LayoutParams;->addRule(I)V
++    invoke-virtual {p0, v0, v3}, Landroid/view/ViewGroup;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
++
++    new-instance v0, Landroid/widget/TextView;
++    invoke-direct {v0, p1}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
++    iput-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->g:Landroid/widget/TextView;
++    const/16 v3, 0x11
++    invoke-virtual {v0, v3}, Landroid/widget/TextView;->setGravity(I)V
++    invoke-virtual {v0, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
++    invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
++    new-instance v3, Landroid/widget/RelativeLayout$LayoutParams;
++    invoke-direct {v3, v4, v2}, Landroid/widget/RelativeLayout$LayoutParams;-><init>(II)V
++    const/16 v5, 0xb
++    invoke-virtual {v3, v5}, Landroid/widget/RelativeLayout$LayoutParams;->addRule(I)V
++    invoke-virtual {p0, v0, v3}, Landroid/view/ViewGroup;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
++
++    new-instance v0, Landroid/widget/ImageButton;
++    invoke-direct {v0, p1}, Landroid/widget/ImageButton;-><init>(Landroid/content/Context;)V
++    iput-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->h:Landroid/widget/ImageButton;
++    const/4 v3, 0x0
++    invoke-virtual {v0, v3}, Landroid/view/View;->setBackgroundColor(I)V
++    invoke-virtual {v0, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
++    invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
++    new-instance v3, Landroid/widget/RelativeLayout$LayoutParams;
++    invoke-direct {v3, v4, v2}, Landroid/widget/RelativeLayout$LayoutParams;-><init>(II)V
++    const/16 v5, 0xb
++    invoke-virtual {v3, v5}, Landroid/widget/RelativeLayout$LayoutParams;->addRule(I)V
++    invoke-virtual {p0, v0, v3}, Landroid/view/ViewGroup;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
++
++    new-instance v0, Landroid/view/View;
++    invoke-direct {v0, p1}, Landroid/view/View;-><init>(Landroid/content/Context;)V
++    iput-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->a:Landroid/view/View;
++    const v3, -0x19191a
++    invoke-virtual {v0, v3}, Landroid/view/View;->setBackgroundColor(I)V
++    invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
++    new-instance v3, Landroid/widget/RelativeLayout$LayoutParams;
++    const/4 v4, -0x1
++    const/4 v5, 0x1
++    invoke-direct {v3, v4, v5}, Landroid/widget/RelativeLayout$LayoutParams;-><init>(II)V
++    const/16 v4, 0xc
++    invoke-virtual {v3, v4}, Landroid/widget/RelativeLayout$LayoutParams;->addRule(I)V
++    invoke-virtual {p0, v0, v3}, Landroid/view/ViewGroup;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
++    return-void
++.end method
+ 
+-    nop
++.method public final c(Landroid/content/Context;)V
++    .registers 2
++    return-void
++.end method
+ 
+-    .line 9
+-    nop
++.method public final d(Landroid/content/Context;)V
++    .registers 2
++    return-void
++.end method
+ 
+-    nop
++.method public final e(Landroid/content/Context;)V
++    .registers 2
++    return-void
++.end method
+ 
+-    nop
++.method public final f(Landroid/content/Context;)V
++    .registers 2
++    return-void
++.end method
+ 
+-    nop
++.method public final g(Landroid/content/Context;Landroid/util/AttributeSet;)V
++    .registers 9
+ 
+-    nop
++    if-eqz p2, :done
++    const-string v0, "http://schemas.android.com/apk/res-auto"
++    const/4 v1, 0x0
++    const/16 v2, 0x8
++
++    const-string v3, "leftType"
++    invoke-interface {p2, v0, v3, v1}, Landroid/util/AttributeSet;->getAttributeIntValue(Ljava/lang/String;Ljava/lang/String;I)I
++    move-result v3
++    const/4 v4, 0x1
++    if-ne v3, v4, :left_image
++    iget-object v4, p0, Lcn/com/titlebar/widget/TitleBar;->d:Landroid/widget/TextView;
++    invoke-virtual {v4, v1}, Landroid/view/View;->setVisibility(I)V
++    goto :left_content
++    :left_image
++    const/4 v4, 0x2
++    if-ne v3, v4, :left_content
++    iget-object v4, p0, Lcn/com/titlebar/widget/TitleBar;->e:Landroid/widget/ImageButton;
++    invoke-virtual {v4, v1}, Landroid/view/View;->setVisibility(I)V
++
++    :left_content
++    const-string v3, "leftText"
++    invoke-interface {p2, v0, v3, v1}, Landroid/util/AttributeSet;->getAttributeResourceValue(Ljava/lang/String;Ljava/lang/String;I)I
++    move-result v4
++    if-eqz v4, :left_text_raw
++    invoke-virtual {p1, v4}, Landroid/content/Context;->getText(I)Ljava/lang/CharSequence;
++    move-result-object v4
++    iget-object v5, p0, Lcn/com/titlebar/widget/TitleBar;->d:Landroid/widget/TextView;
++    invoke-virtual {v5, v4}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
++    goto :left_image_res
++    :left_text_raw
++    invoke-interface {p2, v0, v3}, Landroid/util/AttributeSet;->getAttributeValue(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
++    move-result-object v4
++    if-eqz v4, :left_image_res
++    iget-object v5, p0, Lcn/com/titlebar/widget/TitleBar;->d:Landroid/widget/TextView;
++    invoke-virtual {v5, v4}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
++
++    :left_image_res
++    const-string v3, "leftImageResource"
++    const v4, 0x7f0f0032
++    invoke-interface {p2, v0, v3, v4}, Landroid/util/AttributeSet;->getAttributeResourceValue(Ljava/lang/String;Ljava/lang/String;I)I
++    move-result v4
++    iget-object v5, p0, Lcn/com/titlebar/widget/TitleBar;->e:Landroid/widget/ImageButton;
++    invoke-virtual {v5, v4}, Landroid/widget/ImageButton;->setImageResource(I)V
++
++    const-string v3, "centerText"
++    invoke-interface {p2, v0, v3, v1}, Landroid/util/AttributeSet;->getAttributeResourceValue(Ljava/lang/String;Ljava/lang/String;I)I
++    move-result v4
++    if-eqz v4, :center_text_raw
++    invoke-virtual {p1, v4}, Landroid/content/Context;->getText(I)Ljava/lang/CharSequence;
++    move-result-object v4
++    iget-object v5, p0, Lcn/com/titlebar/widget/TitleBar;->k:Landroid/widget/TextView;
++    invoke-virtual {v5, v4}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
++    goto :right_type
++    :center_text_raw
++    invoke-interface {p2, v0, v3}, Landroid/util/AttributeSet;->getAttributeValue(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
++    move-result-object v4
++    if-eqz v4, :right_type
++    iget-object v5, p0, Lcn/com/titlebar/widget/TitleBar;->k:Landroid/widget/TextView;
++    invoke-virtual {v5, v4}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
++
++    :right_type
++    const-string v3, "rightType"
++    invoke-interface {p2, v0, v3, v1}, Landroid/util/AttributeSet;->getAttributeIntValue(Ljava/lang/String;Ljava/lang/String;I)I
++    move-result v3
++    const/4 v4, 0x1
++    if-ne v3, v4, :right_image
++    iget-object v4, p0, Lcn/com/titlebar/widget/TitleBar;->g:Landroid/widget/TextView;
++    invoke-virtual {v4, v1}, Landroid/view/View;->setVisibility(I)V
++    goto :right_content
++    :right_image
++    const/4 v4, 0x2
++    if-ne v3, v4, :right_content
++    iget-object v4, p0, Lcn/com/titlebar/widget/TitleBar;->h:Landroid/widget/ImageButton;
++    invoke-virtual {v4, v1}, Landroid/view/View;->setVisibility(I)V
++
++    :right_content
++    const-string v3, "rightText"
++    invoke-interface {p2, v0, v3, v1}, Landroid/util/AttributeSet;->getAttributeResourceValue(Ljava/lang/String;Ljava/lang/String;I)I
++    move-result v4
++    if-eqz v4, :right_text_raw
++    invoke-virtual {p1, v4}, Landroid/content/Context;->getText(I)Ljava/lang/CharSequence;
++    move-result-object v4
++    iget-object v5, p0, Lcn/com/titlebar/widget/TitleBar;->g:Landroid/widget/TextView;
++    invoke-virtual {v5, v4}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
++    goto :right_image_res
++    :right_text_raw
++    invoke-interface {p2, v0, v3}, Landroid/util/AttributeSet;->getAttributeValue(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
++    move-result-object v4
++    if-eqz v4, :right_image_res
++    iget-object v5, p0, Lcn/com/titlebar/widget/TitleBar;->g:Landroid/widget/TextView;
++    invoke-virtual {v5, v4}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
++
++    :right_image_res
++    const-string v3, "rightImageResource"
++    invoke-interface {p2, v0, v3, v1}, Landroid/util/AttributeSet;->getAttributeResourceValue(Ljava/lang/String;Ljava/lang/String;I)I
++    move-result v4
++    if-eqz v4, :bottom_line
++    iget-object v5, p0, Lcn/com/titlebar/widget/TitleBar;->h:Landroid/widget/ImageButton;
++    invoke-virtual {v5, v4}, Landroid/widget/ImageButton;->setImageResource(I)V
++
++    :bottom_line
++    const-string v3, "showBottomLine"
++    invoke-interface {p2, v0, v3, v1}, Landroid/util/AttributeSet;->getAttributeBooleanValue(Ljava/lang/String;Ljava/lang/String;Z)Z
++    move-result v3
++    if-eqz v3, :done
++    iget-object v3, p0, Lcn/com/titlebar/widget/TitleBar;->a:Landroid/view/View;
++    invoke-virtual {v3, v1}, Landroid/view/View;->setVisibility(I)V
++
++    :done
++    return-void
++.end method
+ 
+-    nop
++.method public getButtomLine()Landroid/view/View;
++    .registers 2
++    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->a:Landroid/view/View;
++    return-object v0
++.end method
+ 
+-    nop
++.method public getCenterCustomView()Landroid/view/View;
++    .registers 2
++    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->m:Landroid/view/View;
++    return-object v0
++.end method
+ 
+-    nop
++.method public getCenterLayout()Landroid/widget/LinearLayout;
++    .registers 2
++    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->j:Landroid/widget/LinearLayout;
++    return-object v0
++.end method
+ 
+-    .line 10
+-    nop
++.method public getCenterSubTextView()Landroid/widget/TextView;
++    .registers 2
++    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->l:Landroid/widget/TextView;
++    return-object v0
++.end method
+ 
+-    nop
++.method public getCenterTextView()Landroid/widget/TextView;
++    .registers 2
++    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->k:Landroid/widget/TextView;
++    return-object v0
++.end method
+ 
+-    nop
++.method public getLeftCustomView()Landroid/view/View;
++    .registers 2
++    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->f:Landroid/view/View;
++    return-object v0
++.end method
+ 
+-    nop
++.method public getLeftImageButton()Landroid/widget/ImageButton;
++    .registers 2
++    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->e:Landroid/widget/ImageButton;
++    return-object v0
++.end method
+ 
+-    nop
++.method public getLeftTextView()Landroid/widget/TextView;
++    .registers 2
++    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->d:Landroid/widget/TextView;
++    return-object v0
++.end method
+ 
+-    nop
++.method public getRightCustomView()Landroid/view/View;
++    .registers 2
++    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->i:Landroid/view/View;
++    return-object v0
++.end method
+ 
+-    nop
++.method public getRightImageButton()Landroid/widget/ImageButton;
++    .registers 2
++    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->h:Landroid/widget/ImageButton;
++    return-object v0
++.end method
+ 
+-    nop
++.method public getRightTextView()Landroid/widget/TextView;
++    .registers 2
++    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->g:Landroid/widget/TextView;
++    return-object v0
++.end method
+ 
+-    nop
++.method public onClick(Landroid/view/View;)V
++    .registers 5
+ 
+-    nop
++    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->m1:Lcn/com/titlebar/widget/TitleBar$a;
++    if-eqz v0, :done
++
++    const/4 v1, 0x3
++    iget-object v2, p0, Lcn/com/titlebar/widget/TitleBar;->e:Landroid/widget/ImageButton;
++    if-eq p1, v2, :left
++    iget-object v2, p0, Lcn/com/titlebar/widget/TitleBar;->d:Landroid/widget/TextView;
++    if-eq p1, v2, :left
++    iget-object v2, p0, Lcn/com/titlebar/widget/TitleBar;->f:Landroid/view/View;
++    if-ne p1, v2, :center_check
++    :left
++    const/4 v1, 0x2
++    goto :dispatch
++
++    :center_check
++    iget-object v2, p0, Lcn/com/titlebar/widget/TitleBar;->j:Landroid/widget/LinearLayout;
++    if-eq p1, v2, :center
++    iget-object v2, p0, Lcn/com/titlebar/widget/TitleBar;->k:Landroid/widget/TextView;
++    if-eq p1, v2, :center
++    iget-object v2, p0, Lcn/com/titlebar/widget/TitleBar;->m:Landroid/view/View;
++    if-ne p1, v2, :dispatch
++    :center
++    const/4 v1, 0x1
++
++    :dispatch
++    const/4 v2, 0x0
++    invoke-interface {v0, p1, v1, v2}, Lcn/com/titlebar/widget/TitleBar$a;->a(Landroid/view/View;ILjava/lang/String;)V
++    :done
++    return-void
++.end method
+ 
+-    nop
++.method public setCenterText(Ljava/lang/String;)V
++    .registers 3
++    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->k:Landroid/widget/TextView;
++    if-eqz v0, :done
++    invoke-virtual {v0, p1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
++    :done
++    return-void
++.end method
+ 
+-    nop
++.method public setCenterView(Landroid/view/View;)V
++    .registers 5
+ 
+-    nop
++    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->m:Landroid/view/View;
++    if-eqz v0, :assign
++    invoke-virtual {p0, v0}, Landroid/view/ViewGroup;->removeView(Landroid/view/View;)V
++    :assign
++    iput-object p1, p0, Lcn/com/titlebar/widget/TitleBar;->m:Landroid/view/View;
++    if-eqz p1, :done
++    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->j:Landroid/widget/LinearLayout;
++    const/16 v1, 0x8
++    invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
++    invoke-virtual {p1, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
++    new-instance v0, Landroid/widget/RelativeLayout$LayoutParams;
++    const/4 v1, -0x2
++    invoke-direct {v0, v1, v1}, Landroid/widget/RelativeLayout$LayoutParams;-><init>(II)V
++    const/16 v2, 0xd
++    invoke-virtual {v0, v2}, Landroid/widget/RelativeLayout$LayoutParams;->addRule(I)V
++    invoke-virtual {p0, p1, v0}, Landroid/view/ViewGroup;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
++    :done
++    return-void
++.end method
+ 
+-    nop
++.method public setDoubleClickListener(Lcn/com/titlebar/widget/TitleBar$b;)V
++    .registers 2
++    iput-object p1, p0, Lcn/com/titlebar/widget/TitleBar;->n1:Lcn/com/titlebar/widget/TitleBar$b;
++    return-void
++.end method
+ 
+-    .line 11
+-    nop
++.method public setLeftView(Landroid/view/View;)V
++    .registers 5
+ 
+-    nop
++    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->f:Landroid/view/View;
++    if-eqz v0, :assign
++    invoke-virtual {p0, v0}, Landroid/view/ViewGroup;->removeView(Landroid/view/View;)V
++    :assign
++    iput-object p1, p0, Lcn/com/titlebar/widget/TitleBar;->f:Landroid/view/View;
++    if-eqz p1, :done
++    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->e:Landroid/widget/ImageButton;
++    const/16 v1, 0x8
++    invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
++    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->d:Landroid/widget/TextView;
++    invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
++    invoke-virtual {p1, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
++    new-instance v0, Landroid/widget/RelativeLayout$LayoutParams;
++    const/4 v1, -0x2
++    invoke-direct {v0, v1, v1}, Landroid/widget/RelativeLayout$LayoutParams;-><init>(II)V
++    const/16 v2, 0x9
++    invoke-virtual {v0, v2}, Landroid/widget/RelativeLayout$LayoutParams;->addRule(I)V
++    const/16 v2, 0xf
++    invoke-virtual {v0, v2}, Landroid/widget/RelativeLayout$LayoutParams;->addRule(I)V
++    invoke-virtual {p0, p1, v0}, Landroid/view/ViewGroup;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
++    :done
++    return-void
++.end method
+ 
+-    nop
++.method public setOnTitleBarClickListener(Lcn/com/titlebar/widget/TitleBar$a;)V
++    .registers 2
++    iput-object p1, p0, Lcn/com/titlebar/widget/TitleBar;->m1:Lcn/com/titlebar/widget/TitleBar$a;
++    return-void
++.end method
+ 
+-    nop
+-
+-    .line 12
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 13
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 14
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 15
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 16
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 17
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 18
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 19
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 20
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 21
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 22
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 23
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 24
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-.end method
+-
+-.method public final c(Landroid/content/Context;)V
+-    .registers 13
+-
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 3
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 4
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 5
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 6
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 7
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 8
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 9
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 10
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 11
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 12
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 13
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 14
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 15
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 16
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 17
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 18
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 19
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 20
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 21
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 22
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 23
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 24
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 25
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 26
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 27
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 28
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 29
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 30
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 31
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 32
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 33
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 34
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 35
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 36
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 37
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 38
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 39
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 40
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 41
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 42
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 43
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 44
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 45
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 46
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 47
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 48
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 49
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 50
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 51
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 52
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 53
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 54
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-.end method
+-
+-.method public final d(Landroid/content/Context;)V
+-    .registers 7
+-
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 3
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 4
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 5
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 6
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 7
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 8
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 9
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 10
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 11
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 12
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 13
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 14
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 15
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 16
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 17
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 18
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 19
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 20
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 21
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 22
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 23
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 24
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 25
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 26
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 27
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 28
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-.end method
+-
+-.method public final e(Landroid/content/Context;)V
+-    .registers 7
+-
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 3
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 4
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 5
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 6
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 7
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 8
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 9
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 10
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 11
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 12
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 13
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 14
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 15
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 16
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 17
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 18
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 19
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 20
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 21
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 22
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 23
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 24
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 25
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 26
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-.end method
+-
+-.method public final f(Landroid/content/Context;)V
+-    .registers 3
+-
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 3
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 4
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 5
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 6
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-.end method
+-
+-.method public final g(Landroid/content/Context;Landroid/util/AttributeSet;)V
+-    .registers 11
+-
+-    nop
+-
+-    nop
+-
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 3
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 4
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 5
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 6
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 7
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 8
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 9
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 10
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 11
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 12
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 13
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 14
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 15
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 16
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 17
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 18
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 19
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 20
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 21
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 22
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 23
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 24
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 25
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 26
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 27
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 28
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 29
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 30
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 31
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 32
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 33
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-.end method
+-
+-.method public getButtomLine()Landroid/view/View;
+-    .registers 2
+-
+-    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->a:Landroid/view/View;
+-
+-    return-object v0
+-.end method
+-
+-.method public getCenterCustomView()Landroid/view/View;
+-    .registers 2
+-
+-    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->m:Landroid/view/View;
+-
+-    return-object v0
+-.end method
+-
+-.method public getCenterLayout()Landroid/widget/LinearLayout;
+-    .registers 2
+-
+-    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->j:Landroid/widget/LinearLayout;
+-
+-    return-object v0
+-.end method
+-
+-.method public getCenterSubTextView()Landroid/widget/TextView;
+-    .registers 2
+-
+-    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->l:Landroid/widget/TextView;
+-
+-    return-object v0
+-.end method
+-
+-.method public getCenterTextView()Landroid/widget/TextView;
+-    .registers 2
+-
+-    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->k:Landroid/widget/TextView;
+-
+-    return-object v0
+-.end method
+-
+-.method public getLeftCustomView()Landroid/view/View;
+-    .registers 2
+-
+-    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->f:Landroid/view/View;
+-
+-    return-object v0
+-.end method
+-
+-.method public getLeftImageButton()Landroid/widget/ImageButton;
+-    .registers 2
+-
+-    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->e:Landroid/widget/ImageButton;
+-
+-    return-object v0
+-.end method
+-
+-.method public getLeftTextView()Landroid/widget/TextView;
+-    .registers 2
+-
+-    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->d:Landroid/widget/TextView;
+-
+-    return-object v0
+-.end method
+-
+-.method public getRightCustomView()Landroid/view/View;
+-    .registers 2
+-
+-    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->i:Landroid/view/View;
+-
+-    return-object v0
+-.end method
+-
+-.method public getRightImageButton()Landroid/widget/ImageButton;
+-    .registers 2
+-
+-    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->h:Landroid/widget/ImageButton;
+-
+-    return-object v0
+-.end method
+-
+-.method public getRightTextView()Landroid/widget/TextView;
+-    .registers 2
+-
+-    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->g:Landroid/widget/TextView;
+-
+-    return-object v0
+-.end method
+-
+-.method public onClick(Landroid/view/View;)V
+-    .registers 9
+-
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 3
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 4
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 5
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 6
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 7
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 8
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 9
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 10
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 11
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 12
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 13
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 14
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 15
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 16
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-.end method
+-
+-.method public setCenterText(Ljava/lang/String;)V
+-    .registers 3
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-.end method
+-
+-.method public setCenterView(Landroid/view/View;)V
+-    .registers 5
+-
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 3
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 4
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 5
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 6
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-.end method
+-
+-.method public setDoubleClickListener(Lcn/com/titlebar/widget/TitleBar$b;)V
+-    .registers 2
+-
+-    iput-object p1, p0, Lcn/com/titlebar/widget/TitleBar;->n1:Lcn/com/titlebar/widget/TitleBar$b;
+-
+-    return-void
+-.end method
+-
+-.method public setLeftView(Landroid/view/View;)V
+-    .registers 5
+-
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 3
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 4
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 5
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 6
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-.end method
+-
+-.method public setOnTitleBarClickListener(Lcn/com/titlebar/widget/TitleBar$a;)V
+-    .registers 2
+-
+-    iput-object p1, p0, Lcn/com/titlebar/widget/TitleBar;->m1:Lcn/com/titlebar/widget/TitleBar$a;
++.method public setRightView(Landroid/view/View;)V
++    .registers 5
+ 
++    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->i:Landroid/view/View;
++    if-eqz v0, :assign
++    invoke-virtual {p0, v0}, Landroid/view/ViewGroup;->removeView(Landroid/view/View;)V
++    :assign
++    iput-object p1, p0, Lcn/com/titlebar/widget/TitleBar;->i:Landroid/view/View;
++    if-eqz p1, :done
++    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->g:Landroid/widget/TextView;
++    const/16 v1, 0x8
++    invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
++    iget-object v0, p0, Lcn/com/titlebar/widget/TitleBar;->h:Landroid/widget/ImageButton;
++    invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
++    invoke-virtual {p1, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
++    new-instance v0, Landroid/widget/RelativeLayout$LayoutParams;
++    const/4 v1, -0x2
++    invoke-direct {v0, v1, v1}, Landroid/widget/RelativeLayout$LayoutParams;-><init>(II)V
++    const/16 v2, 0xb
++    invoke-virtual {v0, v2}, Landroid/widget/RelativeLayout$LayoutParams;->addRule(I)V
++    const/16 v2, 0xf
++    invoke-virtual {v0, v2}, Landroid/widget/RelativeLayout$LayoutParams;->addRule(I)V
++    invoke-virtual {p0, p1, v0}, Landroid/view/ViewGroup;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
++    :done
+     return-void
+ .end method
+-
+-.method public setRightView(Landroid/view/View;)V
+-    .registers 5
+-
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 3
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 4
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 5
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 6
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-.end method
+diff --git a/smali/com/algorithm/e112g/AlgorithmContext.smali b/smali/com/algorithm/e112g/AlgorithmContext.smali
+index 29622f9..9aaa836 100644
+--- a/smali/com/algorithm/e112g/AlgorithmContext.smali
++++ b/smali/com/algorithm/e112g/AlgorithmContext.smali
+@@ -31,133 +31,57 @@
+ .method public toString()Ljava/lang/String;
+     .registers 4
+ 
+-    nop
++    new-instance v0, Ljava/lang/StringBuilder;
+ 
+-    nop
++    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+ 
+-    nop
++    const-string v1, "AlgorithmContext{\n ig_data="
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+-    nop
++    iget-wide v1, p0, Lcom/algorithm/e112g/AlgorithmContext;->ig_data:D
+ 
+-    nop
++    invoke-virtual {v0, v1, v2}, Ljava/lang/StringBuilder;->append(D)Ljava/lang/StringBuilder;
+ 
+-    nop
++    const-string v1, "\n glucoseWarning="
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+-    nop
++    iget v1, p0, Lcom/algorithm/e112g/AlgorithmContext;->glucoseWarning:I
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+ 
+-    nop
++    const-string v1, "\n currentWarning="
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+-    nop
++    iget v1, p0, Lcom/algorithm/e112g/AlgorithmContext;->currentWarning:I
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+ 
+-    nop
++    const-string v1, "\n temperatureWarning="
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+-    nop
++    iget v1, p0, Lcom/algorithm/e112g/AlgorithmContext;->temperatureWarning:I
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+ 
+-    nop
++    const-string v1, "\n ig_trend="
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+-    nop
++    iget v1, p0, Lcom/algorithm/e112g/AlgorithmContext;->ig_trend:I
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+ 
+-    nop
++    const-string v1, "}"
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+-    nop
++    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+ 
+-    nop
++    move-result-object v0
+ 
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    return-object v0
+ .end method
+diff --git a/smali/com/algorithm/e115m/AlgorithmContext.smali b/smali/com/algorithm/e115m/AlgorithmContext.smali
+index 911cae2..d690653 100644
+--- a/smali/com/algorithm/e115m/AlgorithmContext.smali
++++ b/smali/com/algorithm/e115m/AlgorithmContext.smali
+@@ -31,133 +31,57 @@
+ .method public toString()Ljava/lang/String;
+     .registers 4
+ 
+-    nop
++    new-instance v0, Ljava/lang/StringBuilder;
+ 
+-    nop
++    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+ 
+-    nop
++    const-string v1, "AlgorithmContext{\n ig_data="
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+-    nop
++    iget-wide v1, p0, Lcom/algorithm/e115m/AlgorithmContext;->ig_data:D
+ 
+-    nop
++    invoke-virtual {v0, v1, v2}, Ljava/lang/StringBuilder;->append(D)Ljava/lang/StringBuilder;
+ 
+-    nop
++    const-string v1, "\n glucoseWarning="
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+-    nop
++    iget v1, p0, Lcom/algorithm/e115m/AlgorithmContext;->glucoseWarning:I
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+ 
+-    nop
++    const-string v1, "\n currentWarning="
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+-    nop
++    iget v1, p0, Lcom/algorithm/e115m/AlgorithmContext;->currentWarning:I
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+ 
+-    nop
++    const-string v1, "\n temperatureWarning="
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+-    nop
++    iget v1, p0, Lcom/algorithm/e115m/AlgorithmContext;->temperatureWarning:I
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+ 
+-    nop
++    const-string v1, "\n ig_trend="
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+-    nop
++    iget v1, p0, Lcom/algorithm/e115m/AlgorithmContext;->ig_trend:I
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+ 
+-    nop
++    const-string v1, "}"
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+-    nop
++    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+ 
+-    nop
++    move-result-object v0
+ 
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    return-object v0
+ .end method
+diff --git a/smali/com/algorithm/v1_1_2_e/AlgorithmContext.smali b/smali/com/algorithm/v1_1_2_e/AlgorithmContext.smali
+index dab2c39..d048607 100644
+--- a/smali/com/algorithm/v1_1_2_e/AlgorithmContext.smali
++++ b/smali/com/algorithm/v1_1_2_e/AlgorithmContext.smali
+@@ -31,133 +31,57 @@
+ .method public toString()Ljava/lang/String;
+     .registers 4
+ 
+-    nop
++    new-instance v0, Ljava/lang/StringBuilder;
+ 
+-    nop
++    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+ 
+-    nop
++    const-string v1, "AlgorithmContext{\n ig_data="
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+-    nop
++    iget-wide v1, p0, Lcom/algorithm/v1_1_2_e/AlgorithmContext;->ig_data:D
+ 
+-    nop
++    invoke-virtual {v0, v1, v2}, Ljava/lang/StringBuilder;->append(D)Ljava/lang/StringBuilder;
+ 
+-    nop
++    const-string v1, "\n glucoseWarning="
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+-    nop
++    iget v1, p0, Lcom/algorithm/v1_1_2_e/AlgorithmContext;->glucoseWarning:I
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+ 
+-    nop
++    const-string v1, "\n currentWarning="
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+-    nop
++    iget v1, p0, Lcom/algorithm/v1_1_2_e/AlgorithmContext;->currentWarning:I
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+ 
+-    nop
++    const-string v1, "\n temperatureWarning="
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+-    nop
++    iget v1, p0, Lcom/algorithm/v1_1_2_e/AlgorithmContext;->temperatureWarning:I
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+ 
+-    nop
++    const-string v1, "\n ig_trend="
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+-    nop
++    iget v1, p0, Lcom/algorithm/v1_1_2_e/AlgorithmContext;->ig_trend:I
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+ 
+-    nop
++    const-string v1, "}"
+ 
+-    nop
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+-    nop
++    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+ 
+-    nop
++    move-result-object v0
+ 
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    return-object v0
+ .end method
+diff --git a/smali/dv0.smali b/smali/dv0.smali
+index cb35720..d8f1e8e 100644
+--- a/smali/dv0.smali
++++ b/smali/dv0.smali
+@@ -5,475 +5,169 @@
+ # interfaces
+ .implements Lhv0;
+ 
+-
+-# annotations
+ .annotation build Ley7;
+     value = 0x15
+ .end annotation
+ 
+-
+ # direct methods
+ .method public constructor <init>()V
+     .registers 1
+ 
+     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+-
+     return-void
+ .end method
+ 
+-
+ # virtual methods
+ .method public a(Lgv0;)V
+-    .registers 3
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    .registers 2
+ 
+-    nop
++    invoke-virtual {p0, p1}, Ldv0;->b(Lgv0;)V
++    return-void
+ .end method
+ 
+ .method public b(Lgv0;)V
+     .registers 6
+ 
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 3
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 4
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 5
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 6
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 7
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 8
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 9
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    const/4 v0, 0x0
++    invoke-interface {p1, v0, v0, v0, v0}, Lgv0;->a(IIII)V
++    return-void
+ .end method
+ 
+ .method public c(Lgv0;)F
+-    .registers 3
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    .registers 2
+ 
+-    nop
++    const/4 v0, 0x0
++    return v0
+ .end method
+ 
+ .method public d(Lgv0;)V
+-    .registers 3
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    .registers 2
+ 
+-    nop
++    invoke-virtual {p0, p1}, Ldv0;->b(Lgv0;)V
++    return-void
+ .end method
+ 
+ .method public e(Lgv0;)F
+     .registers 2
+ 
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    invoke-interface {p1}, Lgv0;->g()Landroid/view/View;
++    move-result-object v0
++    invoke-virtual {v0}, Landroid/view/View;->getElevation()F
++    move-result v0
++    return v0
+ .end method
+ 
+ .method public f(Lgv0;Landroid/content/Context;Landroid/content/res/ColorStateList;FFF)V
+-    .registers 7
+-
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
++    .registers 9
+ 
+-    nop
++    new-instance v0, Landroid/graphics/drawable/GradientDrawable;
++    invoke-direct {v0}, Landroid/graphics/drawable/GradientDrawable;-><init>()V
+ 
+-    .line 3
+-    nop
++    if-eqz p3, :color_default
++    invoke-virtual {p3}, Landroid/content/res/ColorStateList;->getDefaultColor()I
++    move-result v1
++    goto :color_ready
+ 
+-    nop
++    :color_default
++    const/4 v1, 0x0
+ 
+-    nop
++    :color_ready
++    invoke-virtual {v0, v1}, Landroid/graphics/drawable/GradientDrawable;->setColor(I)V
++    invoke-virtual {v0, p4}, Landroid/graphics/drawable/GradientDrawable;->setCornerRadius(F)V
++    invoke-interface {p1, v0}, Lgv0;->b(Landroid/graphics/drawable/Drawable;)V
+ 
+-    nop
++    invoke-interface {p1}, Lgv0;->g()Landroid/view/View;
++    move-result-object v1
++    const/4 v0, 0x1
++    invoke-virtual {v1, v0}, Landroid/view/View;->setClipToOutline(Z)V
++    invoke-virtual {v1, p5}, Landroid/view/View;->setElevation(F)V
+ 
+-    nop
+-
+-    .line 4
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 5
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 6
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    invoke-virtual {p0, p1}, Ldv0;->b(Lgv0;)V
++    return-void
+ .end method
+ 
+ .method public g(Lgv0;Landroid/content/res/ColorStateList;)V
+-    .registers 3
++    .registers 5
+     .param p2    # Landroid/content/res/ColorStateList;
+         .annotation build Lm56;
+         .end annotation
+     .end param
+ 
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    invoke-interface {p1}, Lgv0;->d()Landroid/graphics/drawable/Drawable;
++    move-result-object v0
++    instance-of v1, v0, Landroid/graphics/drawable/GradientDrawable;
++    if-eqz v1, :done
++    check-cast v0, Landroid/graphics/drawable/GradientDrawable;
++    if-eqz p2, :transparent
++    invoke-virtual {p2}, Landroid/content/res/ColorStateList;->getDefaultColor()I
++    move-result v1
++    goto :set_color
++    :transparent
++    const/4 v1, 0x0
++    :set_color
++    invoke-virtual {v0, v1}, Landroid/graphics/drawable/GradientDrawable;->setColor(I)V
++    :done
++    return-void
+ .end method
+ 
+ .method public h(Lgv0;F)V
+-    .registers 6
+-
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 3
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 4
+-    nop
+-
+-    nop
+-
+-    nop
++    .registers 3
+ 
+-    nop
++    invoke-virtual {p0, p1}, Ldv0;->b(Lgv0;)V
++    return-void
+ .end method
+ 
+ .method public i(Lgv0;F)V
+-    .registers 3
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    .registers 5
++
++    invoke-interface {p1}, Lgv0;->d()Landroid/graphics/drawable/Drawable;
++    move-result-object v0
++    instance-of v1, v0, Landroid/graphics/drawable/GradientDrawable;
++    if-eqz v1, :done
++    check-cast v0, Landroid/graphics/drawable/GradientDrawable;
++    invoke-virtual {v0, p2}, Landroid/graphics/drawable/GradientDrawable;->setCornerRadius(F)V
++    :done
++    return-void
+ .end method
+ 
+ .method public j(Lgv0;)F
+-    .registers 3
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    .registers 2
+ 
+-    nop
++    const/4 v0, 0x0
++    return v0
+ .end method
+ 
+ .method public k(Lgv0;)F
+     .registers 2
+ 
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    const/4 v0, 0x0
++    return v0
+ .end method
+ 
+ .method public l(Lgv0;)Landroid/content/res/ColorStateList;
+     .registers 2
+ 
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    const/4 v0, 0x0
++    invoke-static {v0}, Landroid/content/res/ColorStateList;->valueOf(I)Landroid/content/res/ColorStateList;
++    move-result-object v0
++    return-object v0
+ .end method
+ 
+ .method public m(Lgv0;F)V
+     .registers 3
+ 
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    invoke-interface {p1}, Lgv0;->g()Landroid/view/View;
++    move-result-object p1
++    invoke-virtual {p1, p2}, Landroid/view/View;->setElevation(F)V
++    return-void
+ .end method
+ 
+ .method public n(Lgv0;)F
+     .registers 2
+ 
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    invoke-virtual {p0, p1}, Ldv0;->e(Lgv0;)F
++    move-result v0
++    return v0
+ .end method
+ 
+ .method public o()V
+@@ -485,17 +179,6 @@
+ .method public final p(Lgv0;)Lr18;
+     .registers 2
+ 
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    const/4 v0, 0x0
++    return-object v0
+ .end method
+diff --git a/smali/s3$d.smali b/smali/s3$d.smali
+index 8d3d8e2..3585eaf 100644
+--- a/smali/s3$d.smali
++++ b/smali/s3$d.smali
+@@ -32,17 +32,11 @@
+     .annotation build Li72;
+     .end annotation
+ 
+-    nop
++    new-instance v0, Landroid/view/accessibility/AccessibilityNodeInfo$RangeInfo;
+ 
+-    nop
++    invoke-direct {v0, p0, p1, p2, p3}, Landroid/view/accessibility/AccessibilityNodeInfo$RangeInfo;-><init>(IFFF)V
+ 
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    return-object v0
+ .end method
+ 
+ .method public static b(Landroid/view/accessibility/AccessibilityNodeInfo;)Ljava/lang/CharSequence;
+diff --git a/smali/vc8.smali b/smali/vc8.smali
+index 7a2733b..f5a475d 100644
+--- a/smali/vc8.smali
++++ b/smali/vc8.smali
+@@ -2,525 +2,131 @@
+ .super Ljava/lang/Object;
+ .source "ScreenUtils.java"
+ 
+-
+ # direct methods
+ .method public constructor <init>()V
+     .registers 1
+-
+     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+-
+     return-void
+ .end method
+ 
+ .method public static a(Landroid/content/Context;)F
+-    .registers 1
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    .registers 2
++    invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
++    move-result-object v0
++    invoke-virtual {v0}, Landroid/content/res/Resources;->getDisplayMetrics()Landroid/util/DisplayMetrics;
++    move-result-object v0
++    iget v0, v0, Landroid/util/DisplayMetrics;->density:F
++    return v0
+ .end method
+ 
+ .method public static b(Landroid/content/Context;F)F
+-    .registers 2
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    .registers 3
++    invoke-static {p0}, Lvc8;->a(Landroid/content/Context;)F
++    move-result v0
++    mul-float/2addr v0, p1
++    return v0
+ .end method
+ 
+ .method public static c(Landroid/content/Context;F)I
+-    .registers 2
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    .registers 3
++    invoke-static {p0, p1}, Lvc8;->b(Landroid/content/Context;F)F
++    move-result v0
++    float-to-int v0, v0
++    return v0
+ .end method
+ 
+ .method public static d(Landroid/content/Context;)I
+     .registers 2
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
++    move-result-object v0
++    invoke-virtual {v0}, Landroid/content/res/Resources;->getDisplayMetrics()Landroid/util/DisplayMetrics;
++    move-result-object v0
++    iget v0, v0, Landroid/util/DisplayMetrics;->widthPixels:I
++    return v0
+ .end method
+ 
+ .method public static e(Landroid/content/Context;)I
+-    .registers 1
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    .registers 2
++    invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
++    move-result-object v0
++    invoke-virtual {v0}, Landroid/content/res/Resources;->getDisplayMetrics()Landroid/util/DisplayMetrics;
++    move-result-object v0
++    iget v0, v0, Landroid/util/DisplayMetrics;->heightPixels:I
++    return v0
+ .end method
+ 
+ .method public static f()[I
+-    .registers 4
+-
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    .registers 3
++    const/4 v0, 0x2
++    new-array v0, v0, [I
++    const/4 v1, 0x0
++    aput v1, v0, v1
++    const/4 v1, 0x1
++    const/4 v2, 0x0
++    aput v2, v0, v1
++    return-object v0
+ .end method
+ 
+ .method public static g(Landroid/content/Context;)I
+-    .registers 1
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    .registers 2
++    invoke-static {p0}, Lvc8;->d(Landroid/content/Context;)I
++    move-result v0
++    return v0
+ .end method
+ 
+ .method public static h(Landroid/content/Context;)I
+-    .registers 4
+-
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 3
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    .registers 2
++    invoke-static {p0}, Lvc8;->e(Landroid/content/Context;)I
++    move-result v0
++    return v0
+ .end method
+ 
+ .method public static i(Landroid/content/Context;Landroid/view/View;)V
+-    .registers 3
+-
+-    nop
+-
+-    nop
+-
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 3
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    .registers 2
++    return-void
+ .end method
+ 
+ .method public static j(Landroid/content/Context;F)F
+-    .registers 2
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    .registers 3
++    invoke-static {p0}, Lvc8;->a(Landroid/content/Context;)F
++    move-result v0
++    div-float v0, p1, v0
++    return v0
+ .end method
+ 
+ .method public static k(Landroid/content/Context;F)F
+-    .registers 2
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    .registers 3
++    invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
++    move-result-object v0
++    invoke-virtual {v0}, Landroid/content/res/Resources;->getDisplayMetrics()Landroid/util/DisplayMetrics;
++    move-result-object v0
++    iget v0, v0, Landroid/util/DisplayMetrics;->scaledDensity:F
++    mul-float/2addr v0, p1
++    return v0
+ .end method
+ 
+ .method public static l(Landroid/content/Context;F)I
+-    .registers 2
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    .registers 3
++    invoke-static {p0, p1}, Lvc8;->j(Landroid/content/Context;F)F
++    move-result v0
++    float-to-int v0, v0
++    return v0
+ .end method
+ 
+ .method public static m(Landroid/view/View;Landroid/app/Activity;)V
+-    .registers 3
+-
+-    nop
+-
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 3
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 4
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 5
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    .registers 2
++    return-void
+ .end method
+ 
+ .method public static n(Landroid/content/Context;Landroid/view/View;)V
+-    .registers 3
+-
+-    nop
+-
+-    nop
+-
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    .registers 2
++    return-void
+ .end method
+ 
+ .method public static o(Landroid/content/Context;F)I
+-    .registers 2
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    .registers 3
++    invoke-static {p0, p1}, Lvc8;->k(Landroid/content/Context;F)F
++    move-result v0
++    float-to-int v0, v0
++    return v0
+ .end method
+diff --git a/smali/xz4.smali b/smali/xz4.smali
+index ead34f8..6cd285b 100644
+--- a/smali/xz4.smali
++++ b/smali/xz4.smali
+@@ -2,271 +2,53 @@
+ .super Lwz4;
+ .source "LoaderManagerImpl.java"
+ 
++# v16.1-hf1: the protected upstream method bodies in this class were emitted
++# as nop-only stubs. Android 16 verifies the whole class when Fragment calls
++# LoaderManager.markForRedelivery(), then rejects every fall-through method.
++# The application has no LoaderManager init/restart/destroy call sites; only
++# Fragment's markForRedelivery() and diagnostic dump() are referenced. Keep a
++# verifier-safe no-op implementation of the original public API.
+ 
+-# annotations
+-.annotation system Ldalvik/annotation/MemberClasses;
+-    value = {
+-        Lxz4$c;,
+-        Lxz4$b;,
+-        Lxz4$a;
+-    }
+-.end annotation
+-
+-
+-# static fields
+ .field public static final c:Ljava/lang/String; = "LoaderManager"
+ 
+ .field public static d:Z = false
+ 
+ 
+-# instance fields
+-.field public final a:Law4;
+-    .annotation build Lz36;
+-    .end annotation
+-.end field
+-
+-.field public final b:Lxz4$c;
+-    .annotation build Lz36;
+-    .end annotation
+-.end field
++.method public static constructor <clinit>()V
++    .locals 1
+ 
++    const/4 v0, 0x0
+ 
+-# direct methods
+-.method public static constructor <clinit>()V
+-    .registers 0
++    sput-boolean v0, Lxz4;->d:Z
+ 
+     return-void
+ .end method
+ 
+ .method public constructor <init>(Law4;Ls0a;)V
+-    .registers 3
+-    .param p1    # Law4;
+-        .annotation build Lz36;
+-        .end annotation
+-    .end param
+-    .param p2    # Ls0a;
+-        .annotation build Lz36;
+-        .end annotation
+-    .end param
+-
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    .line 3
+-    nop
+-
+-    nop
+-
+-    nop
++    .locals 0
+ 
+-    nop
++    invoke-direct {p0}, Lwz4;-><init>()V
+ 
+-    nop
+-
+-    nop
+-
+-    nop
++    return-void
+ .end method
+ 
+ 
+-# virtual methods
+ .method public a(I)V
+-    .registers 4
+-    .annotation build Lf95;
+-    .end annotation
+-
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 3
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    .locals 0
+ 
+-    nop
+-
+-    nop
+-
+-    .line 4
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 5
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 6
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 7
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 8
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    return-void
+ .end method
+ 
+ .method public b(Ljava/lang/String;Ljava/io/FileDescriptor;Ljava/io/PrintWriter;[Ljava/lang/String;)V
+-    .registers 6
++    .locals 0
+     .annotation runtime Ljava/lang/Deprecated;
+     .end annotation
+ 
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    return-void
+ .end method
+ 
+ .method public e(I)Lsz4;
+-    .registers 3
++    .locals 1
+     .annotation system Ldalvik/annotation/Signature;
+         value = {
+             "<D:",
+@@ -277,104 +59,21 @@
+         }
+     .end annotation
+ 
+-    .annotation build Lm56;
+-    .end annotation
+-
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 3
+-    nop
++    const/4 v0, 0x0
+ 
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 4
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    return-object v0
+ .end method
+ 
+ .method public f()Z
+-    .registers 2
+-
+-    nop
+-
+-    nop
++    .locals 1
+ 
+-    nop
++    const/4 v0, 0x0
+ 
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    return v0
+ .end method
+ 
+ .method public g(ILandroid/os/Bundle;Lwz4$a;)Lsz4;
+-    .registers 7
+-    .param p2    # Landroid/os/Bundle;
+-        .annotation build Lm56;
+-        .end annotation
+-    .end param
+-    .param p3    # Lwz4$a;
+-        .annotation build Lz36;
+-        .end annotation
+-    .end param
++    .locals 1
+     .annotation system Ldalvik/annotation/Signature;
+         value = {
+             "<D:",
+@@ -388,242 +87,19 @@
+         }
+     .end annotation
+ 
+-    .annotation build Lf95;
+-    .end annotation
+-
+-    .annotation build Lz36;
+-    .end annotation
+-
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 3
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 4
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    const/4 v0, 0x0
+ 
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 5
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 6
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 7
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 8
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 9
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    return-object v0
+ .end method
+ 
+ .method public h()V
+-    .registers 2
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    .locals 0
+ 
+-    nop
+-
+-    nop
+-
+-    nop
++    return-void
+ .end method
+ 
+ .method public i(ILandroid/os/Bundle;Lwz4$a;)Lsz4;
+-    .registers 6
+-    .param p2    # Landroid/os/Bundle;
+-        .annotation build Lm56;
+-        .end annotation
+-    .end param
+-    .param p3    # Lwz4$a;
+-        .annotation build Lz36;
+-        .end annotation
+-    .end param
++    .locals 1
+     .annotation system Ldalvik/annotation/Signature;
+         value = {
+             "<D:",
+@@ -637,191 +113,13 @@
+         }
+     .end annotation
+ 
+-    .annotation build Lf95;
+-    .end annotation
+-
+-    .annotation build Lz36;
+-    .end annotation
+-
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 3
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 4
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 5
+-    nop
++    const/4 v0, 0x0
+ 
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 6
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 7
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 8
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    return-object v0
+ .end method
+ 
+ .method public final j(ILandroid/os/Bundle;Lwz4$a;Lsz4;)Lsz4;
+-    .registers 7
+-    .param p2    # Landroid/os/Bundle;
+-        .annotation build Lm56;
+-        .end annotation
+-    .end param
+-    .param p3    # Lwz4$a;
+-        .annotation build Lz36;
+-        .end annotation
+-    .end param
+-    .param p4    # Lsz4;
+-        .annotation build Lm56;
+-        .end annotation
+-    .end param
++    .locals 0
+     .annotation system Ldalvik/annotation/Signature;
+         value = {
+             "<D:",
+@@ -837,351 +135,13 @@
+         }
+     .end annotation
+ 
+-    .annotation build Lf95;
+-    .end annotation
+-
+-    .annotation build Lz36;
+-    .end annotation
+-
+-    .line 1
+-    :try_start_0
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 3
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 4
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 5
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 6
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 7
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 8
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-    :try_end_56
+-    .catchall {:try_start_0 .. :try_end_56} :catchall_6a
+-
+-    .line 9
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 10
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 11
+-    :try_start_62
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-    :try_end_6a
+-    .catchall {:try_start_62 .. :try_end_6a} :catchall_6a
+-
+-    :catchall_6a
+-    nop
+-
+-    .line 12
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
++    return-object p4
+ .end method
+ 
+ .method public toString()Ljava/lang/String;
+-    .registers 3
+-
+-    .line 1
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 2
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 3
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 4
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 5
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 6
+-    nop
+-
+-    nop
+-
+-    nop
+-
+-    .line 7
+-    nop
+-
+-    nop
+-
+-    nop
++    .locals 1
+ 
+-    nop
++    const-string v0, "LoaderManager{v16.1-hf1}"
+ 
+-    nop
++    return-object v0
+ .end method
+diff --git a/smali_classes5/c9.smali b/smali_classes5/c9.smali
+index 155f9b3..872a78d 100644
+--- a/smali_classes5/c9.smali
++++ b/smali_classes5/c9.smali
+@@ -54,6 +54,14 @@
+ 
+     if-eqz v1, :cond_17
+ 
++    const-string v1, "com.algorithm.v1_1_2_e.AlgorithmContext"
++
++    invoke-static {v1}, Lc9;->c(Ljava/lang/String;)Z
++
++    move-result v1
++
++    if-eqz v1, :cond_41
++
+     .line 3
+     new-instance p0, Ld9;
+ 
+@@ -71,6 +79,14 @@
+ 
+     if-eqz v1, :cond_25
+ 
++    const-string v1, "com.algorithm.e112g.AlgorithmContext"
++
++    invoke-static {v1}, Lc9;->c(Ljava/lang/String;)Z
++
++    move-result v1
++
++    if-eqz v1, :cond_41
++
+     .line 5
+     new-instance p0, Le9;
+ 
+@@ -88,6 +104,14 @@
+ 
+     if-eqz v1, :cond_33
+ 
++    const-string v1, "com.algorithm.e115m.AlgorithmContext"
++
++    invoke-static {v1}, Lc9;->c(Ljava/lang/String;)Z
++
++    move-result v1
++
++    if-eqz v1, :cond_41
++
+     .line 7
+     new-instance p0, Lf9;
+ 
+@@ -105,6 +129,14 @@
+ 
+     if-eqz p0, :cond_41
+ 
++    const-string p0, "com.algorithm.e115n.AlgorithmContext"
++
++    invoke-static {p0}, Lc9;->c(Ljava/lang/String;)Z
++
++    move-result p0
++
++    if-eqz p0, :cond_41
++
+     .line 9
+     new-instance p0, Lg9;
+ 
+@@ -115,6 +147,22 @@
+     goto :goto_49
+ 
+     :cond_41
++    new-instance v1, Ljava/lang/StringBuilder;
++
++    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
++
++    const-string p0, "ALGORITHM_UNSUPPORTED_OR_VERIFY_FAILED"
++
++    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object p0
++
++    const-string v1, "SiSensingAlgoHF5"
++
++    invoke-static {v1, p0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
++
+     const/4 p0, 0x0
+ 
+     .line 10
+@@ -125,9 +173,7 @@
+     .line 11
+     :cond_44
+     :try_start_44
+-    new-instance p0, Lf9;
+-
+-    invoke-direct {p0}, Lf9;-><init>()V
++    goto :cond_41
+     :try_end_49
+     .catchall {:try_start_44 .. :try_end_49} :catchall_4b
+ 
+@@ -145,6 +191,52 @@
+     throw p0
+ .end method
+ 
++.method private static c(Ljava/lang/String;)Z
++    .registers 4
++
++    :try_start_0
++    invoke-static {p0}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Ljava/lang/Class;->newInstance()Ljava/lang/Object;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Ljava/lang/Object;->toString()Ljava/lang/String;
++
++    const/4 v0, 0x1
++    :try_end_10
++    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_10} :catch_11
++
++    return v0
++
++    :catch_11
++    move-exception v0
++
++    new-instance v1, Ljava/lang/StringBuilder;
++
++    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
++
++    const-string v2, "ALGORITHM_PREFLIGHT_FAILED:"
++
++    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object p0
++
++    const-string v1, "SiSensingAlgoHF5"
++
++    invoke-static {v1, p0, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
++
++    const/4 v0, 0x0
++
++    return v0
++.end method
++
+ .method public static b()Ljava/lang/String;
+     .registers 1
+ 
+diff --git a/smali_classes5/com/sisensing/common/ble/LocalBleService$i.smali b/smali_classes5/com/sisensing/common/ble/LocalBleService$i.smali
+index e402abe..b6f7a6e 100644
+--- a/smali_classes5/com/sisensing/common/ble/LocalBleService$i.smali
++++ b/smali_classes5/com/sisensing/common/ble/LocalBleService$i.smali
+@@ -146,6 +146,10 @@
+ 
+     move-result p1
+ 
++    iget-object v0, p0, Lcom/sisensing/common/ble/LocalBleService$i;->f:Lcom/sisensing/common/ble/LocalBleService;
++
++    invoke-static {v0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->onConnectStartResult(Lcom/sisensing/common/ble/LocalBleService;I)V
++
+     invoke-static {p1}, Lsc0;->f(I)Ljava/lang/Integer;
+ 
+     .line 4
+diff --git a/smali_classes5/com/sisensing/common/ble/LocalBleService$m.smali b/smali_classes5/com/sisensing/common/ble/LocalBleService$m.smali
+index e53b0ef..2bede43 100644
+--- a/smali_classes5/com/sisensing/common/ble/LocalBleService$m.smali
++++ b/smali_classes5/com/sisensing/common/ble/LocalBleService$m.smali
+@@ -240,7 +240,7 @@
+ 
+     if-nez p1, :cond_b9
+ 
+-    return-void
++    goto/16 :goto_1f1
+ 
+     .line 8
+     :cond_b9
+@@ -595,5 +595,9 @@
+ 
+     :cond_1f1
+     :goto_1f1
++    iget-object p1, p0, Lcom/sisensing/common/ble/LocalBleService$m;->a:Lcom/sisensing/common/ble/LocalBleService;
++
++    invoke-static {p1}, Lcom/sisensing/common/ble/BleReconnectV16;->onCycle(Lcom/sisensing/common/ble/LocalBleService;)V
++
+     return-void
+ .end method
+diff --git a/smali_classes5/com/sisensing/common/ble/LocalBleService$o.smali b/smali_classes5/com/sisensing/common/ble/LocalBleService$o.smali
+index f384300..a2c02ed 100644
+--- a/smali_classes5/com/sisensing/common/ble/LocalBleService$o.smali
++++ b/smali_classes5/com/sisensing/common/ble/LocalBleService$o.smali
+@@ -108,7 +108,7 @@
+     .line 3
+     iget-object v0, p0, Lcom/sisensing/common/ble/LocalBleService$o;->f:Lcom/sisensing/common/ble/LocalBleService;
+ 
+-    invoke-virtual {v0}, Lcom/sisensing/common/ble/LocalBleService;->g()V
++    invoke-static {v0}, Lcom/sisensing/common/ble/BleReconnectV16;->onSdkServiceDisconnected(Lcom/sisensing/common/ble/LocalBleService;)V
+ 
+     .line 4
+     iget-object v0, p0, Lcom/sisensing/common/ble/LocalBleService$o;->f:Lcom/sisensing/common/ble/LocalBleService;
+diff --git a/smali_classes5/com/sisensing/common/ble/LocalBleService.smali b/smali_classes5/com/sisensing/common/ble/LocalBleService.smali
+index 0b52eca..dcbf362 100644
+--- a/smali_classes5/com/sisensing/common/ble/LocalBleService.smali
++++ b/smali_classes5/com/sisensing/common/ble/LocalBleService.smali
+@@ -2012,7 +2012,7 @@
+     invoke-static {v1, v0}, Lcom/blankj/utilcode/util/ToastUtils;->W(Ljava/lang/String;[Ljava/lang/Object;)V
+ 
+     .line 2
+-    invoke-virtual {p0}, Lcom/sisensing/common/ble/LocalBleService;->g()V
++    invoke-static {p0}, Lcom/sisensing/common/ble/BleReconnectV16;->onScanError(Lcom/sisensing/common/ble/LocalBleService;)V
+ 
+     return-void
+ .end method
+@@ -5302,6 +5302,12 @@
+     :cond_15
+     invoke-virtual {p1}, Lrx0;->i()V
+ 
++    # v16: preserve the official UI cleanup above, then delegate retry timing
++    # to the bounded supervisor. Do not clear unrelated Handler work.
++    invoke-static {p0}, Lcom/sisensing/common/ble/BleReconnectV16;->scheduleDisconnected(Lcom/sisensing/common/ble/LocalBleService;)V
++
++    return-void
++
+     .line 4
+     invoke-static {}, Ltc8;->r()Z
+ 
+@@ -6488,6 +6494,8 @@
+     :cond_16
+     iget-object v0, p0, Lcom/sisensing/common/ble/LocalBleService;->h:Lc44;
+ 
++    if-eqz v0, :cond_unsupported_algo_hf5
++
+     invoke-static {v0}, Lni4;->m(Ljava/lang/Object;)V
+ 
+     invoke-static {}, Lqu9;->I0()Ljava/lang/String;
+@@ -6496,6 +6504,16 @@
+ 
+     invoke-interface {v0, v1}, Lc44;->h(Ljava/lang/String;)V
+ 
++    goto :goto_clear_algo_hf5
++
++    :cond_unsupported_algo_hf5
++    const-string v0, "SiSensingAlgoHF5"
++
++    const-string v1, "ALGORITHM_RELEASE_SKIPPED_UNSUPPORTED"
++
++    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
++
++    :goto_clear_algo_hf5
+     const-string v0, ""
+ 
+     .line 5
+@@ -8255,6 +8273,8 @@
+     .line 1
+     iput p3, p0, Lcom/sisensing/common/ble/LocalBleService;->t:I
+ 
++    invoke-static {p0, p3}, Lcom/sisensing/common/ble/BleReconnectV16;->onState(Lcom/sisensing/common/ble/LocalBleService;I)V
++
+     const/4 v0, 0x1
+ 
+     new-array v1, v0, [Ljava/lang/Object;
+@@ -8403,9 +8423,11 @@
+     .line 13
+     iget-object p1, p0, Lcom/sisensing/common/ble/LocalBleService;->l1:Landroid/os/Handler;
+ 
+-    const/4 p2, 0x0
++    const/16 v3, 0x3e8
+ 
+-    invoke-virtual {p1, p2}, Landroid/os/Handler;->removeCallbacksAndMessages(Ljava/lang/Object;)V
++    invoke-virtual {p1, v3}, Landroid/os/Handler;->removeMessages(I)V
++
++    const/4 p2, 0x0
+ 
+     .line 14
+     iget-object p1, p0, Lcom/sisensing/common/ble/LocalBleService;->k1:Lrx0;
+@@ -8424,6 +8446,10 @@
+     :goto_a3
+     invoke-virtual {p2}, Lrx0;->m()V
+ 
++    const/4 p1, 0x1
++
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->onState(Lcom/sisensing/common/ble/LocalBleService;I)V
++
+     goto :goto_ba
+ 
+     :cond_a7
+@@ -8451,10 +8477,18 @@
+ .end method
+ 
+ .method public onCreate()V
+-    .registers 1
++    .registers 2
+ 
+     invoke-virtual {p0}, Lcom/sisensing/common/ble/LocalBleService;->X0()V
+ 
++    const-string v0, "LOCAL_SERVICE_CREATE"
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    const/4 v0, 0x0
++
++    invoke-virtual {p0, v0}, Lcom/sisensing/common/ble/LocalBleService;->M0(Z)V
++
+     return-void
+ .end method
+ 
+@@ -8825,6 +8859,10 @@
+         .end annotation
+     .end param
+ 
++    const-string p1, "SERVICES_DISCOVERED"
++
++    invoke-static {p0, p1, p2}, Lcom/sisensing/common/ble/BleReconnectV16;->logEventInt(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;I)V
++
+     return-void
+ .end method
+ 
+@@ -8835,7 +8873,11 @@
+         .end annotation
+     .end param
+ 
+-    const/4 p1, 0x2
++    const-string p1, "LOCAL_SERVICE_START"
++
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    const/4 p1, 0x1
+ 
+     return p1
+ .end method
+@@ -12119,12 +12161,20 @@
+ 
+     invoke-virtual {p1, v0, v4, v4}, Lno/sisense/android/api/SisenseBluetooth;->BleBluthtoothConnectStart(Ljava/lang/String;II)I
+ 
++    move-result p1
++
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->onConnectStartResult(Lcom/sisensing/common/ble/LocalBleService;I)V
++
+     goto :goto_c2
+ 
+     .line 11
+     :cond_b1
+     invoke-virtual {p0}, Lcom/sisensing/common/ble/LocalBleService;->g()V
+ 
++    const/4 p1, 0x0
++
++    invoke-virtual {p0, p1}, Lcom/sisensing/common/ble/LocalBleService;->r1(Z)V
++
+     .line 12
+     iget-object v5, p0, Lcom/sisensing/common/ble/LocalBleService;->C:Lfl1;
+ 
+diff --git a/smali_classes5/no/sisense/android/service/a.smali b/smali_classes5/no/sisense/android/service/a.smali
+index 416b3e9..bbb97ab 100644
+--- a/smali_classes5/no/sisense/android/service/a.smali
++++ b/smali_classes5/no/sisense/android/service/a.smali
+@@ -978,7 +978,7 @@
+ .method public final onStartCommand(Landroid/content/Intent;II)I
+     .registers 4
+ 
+-    const/4 p1, 0x2
++    const/4 p1, 0x1
+ 
+     return p1
+ .end method
+@@ -989,9 +989,6 @@
+     .line 1
+     invoke-super {p0, p1}, Landroid/app/Service;->onTaskRemoved(Landroid/content/Intent;)V
+ 
+-    .line 2
+-    invoke-virtual {p0}, Landroid/app/Service;->stopSelf()V
+-
+     return-void
+ .end method
+ 
+diff --git a/smali_classes7/p/a.smali b/smali_classes7/p/a.smali
+index 56cdee5..ba714c5 100644
+--- a/smali_classes7/p/a.smali
++++ b/smali_classes7/p/a.smali
+@@ -766,7 +766,9 @@
+     :cond_25
+     iget-object v0, v6, Lp/a;->c:Landroid/os/PowerManager$WakeLock;
+ 
+-    invoke-virtual {v0}, Landroid/os/PowerManager$WakeLock;->acquire()V
++    const-wide/32 v4, 0x124f8
++
++    invoke-virtual {v0, v4, v5}, Landroid/os/PowerManager$WakeLock;->acquire(J)V
+ 
+     const/4 v8, 0x2
+ 
+@@ -927,26 +929,208 @@
+ 
+     .line 21
+     :goto_9a
++    # v16.1-hf4: keep screen-on recovery permissive, but use real non-empty
++    # filters while the screen is off.  v3 is the SDK's four-character target
++    # key (for example 6TTW), whereas DeviceEntity.deviceName is the complete
++    # advertised name (for example P225086TTW).  Android device-name filtering
++    # is exact, so the former alone can permanently hide the bound transmitter.
++    new-instance v5, Ljava/util/ArrayList;
++
++    invoke-direct {v5}, Ljava/util/ArrayList;-><init>()V
++
++    sget-object v4, Lp/a;->m:Landroid/content/Context;
++
++    const-string v7, "power"
++
++    invoke-virtual {v4, v7}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
++
++    move-result-object v4
++
++    check-cast v4, Landroid/os/PowerManager;
++
++    invoke-virtual {v4}, Landroid/os/PowerManager;->isInteractive()Z
++
++    move-result v4
++
++    if-eqz v4, :cond_hf4_screen_off
++
++    # Screen on: preserve the SDK's original all-pass scan.  The existing
++    # callback still performs the last-four-character target check before GATT.
++    const/4 v8, 0x0
++
++    const/4 v9, 0x0
++
++    const/4 v10, 0x0
++
++    const/4 v11, 0x0
++
++    const/4 v12, 0x0
++
++    const/4 v13, 0x0
++
++    const/4 v14, 0x0
++
++    const/4 v15, -0x1
++
++    const/16 v16, 0x0
++
++    const/16 v17, 0x0
++
++    const/16 v18, 0x0
++
+     new-instance v4, Lno/chuangan/android/support/v18/scanner/ScanFilter;
+ 
+-    const/4 v5, 0x0
++    move-object v7, v4
++
++    invoke-direct/range {v7 .. v18}, Lno/chuangan/android/support/v18/scanner/ScanFilter;-><init>(Ljava/lang/String;Ljava/lang/String;Landroid/os/ParcelUuid;Landroid/os/ParcelUuid;Landroid/os/ParcelUuid;[B[BI[B[BLno/chuangan/android/support/v18/scanner/ScanFilter$a;)V
++
++    invoke-virtual {v5, v4}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
++
++    goto :goto_hf4_filters_ready
++
++    :cond_hf4_screen_off
++    # Filter 1: complete saved transmitter name.  Fall back to the four-byte
++    # key only when the saved entity or its complete name is unavailable.
++    invoke-static {}, Lcom/sisensing/common/entity/Device/DeviceManager;->getInstance()Lcom/sisensing/common/entity/Device/DeviceManager;
++
++    move-result-object v4
++
++    invoke-virtual {v4}, Lcom/sisensing/common/entity/Device/DeviceManager;->getDeviceEntity()Lcom/sisensing/common/entity/Device/DeviceEntity;
++
++    move-result-object v4
++
++    if-eqz v4, :cond_hf4_name_fallback
++
++    invoke-virtual {v4}, Lcom/sisensing/common/entity/Device/DeviceEntity;->getDeviceName()Ljava/lang/String;
++
++    move-result-object v8
++
++    invoke-static {v8}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
++
++    move-result v4
++
++    if-eqz v4, :goto_hf4_name_ready
++
++    :cond_hf4_name_fallback
++    move-object v8, v3
++
++    :goto_hf4_name_ready
++    const/4 v9, 0x0
++
++    const/4 v10, 0x0
++
++    const/4 v11, 0x0
++
++    const/4 v12, 0x0
++
++    const/4 v13, 0x0
++
++    const/4 v14, 0x0
++
++    const/4 v15, -0x1
++
++    const/16 v16, 0x0
++
++    const/16 v17, 0x0
+ 
+     const/16 v18, 0x0
+ 
++    new-instance v4, Lno/chuangan/android/support/v18/scanner/ScanFilter;
++
+     move-object v7, v4
+ 
+-    move-object v11, v5
++    invoke-direct/range {v7 .. v18}, Lno/chuangan/android/support/v18/scanner/ScanFilter;-><init>(Ljava/lang/String;Ljava/lang/String;Landroid/os/ParcelUuid;Landroid/os/ParcelUuid;Landroid/os/ParcelUuid;[B[BI[B[BLno/chuangan/android/support/v18/scanner/ScanFilter$a;)V
++
++    invoke-virtual {v5, v4}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
++
++    # Filter 2: retain compatibility with transmitter batches that advertise
++    # only the four-character key.  Skip the duplicate if both names coincide.
++    invoke-static {v3}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
++
++    move-result v4
++
++    if-nez v4, :cond_hf4_add_service_filter
++
++    invoke-virtual {v3, v8}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result v4
++
++    if-nez v4, :cond_hf4_add_service_filter
++
++    move-object v8, v3
++
++    const/4 v9, 0x0
++
++    const/4 v10, 0x0
++
++    const/4 v11, 0x0
++
++    const/4 v12, 0x0
++
++    const/4 v13, 0x0
++
++    const/4 v14, 0x0
++
++    const/4 v15, -0x1
++
++    const/16 v16, 0x0
++
++    const/16 v17, 0x0
++
++    const/16 v18, 0x0
++
++    new-instance v4, Lno/chuangan/android/support/v18/scanner/ScanFilter;
++
++    move-object v7, v4
+ 
+     invoke-direct/range {v7 .. v18}, Lno/chuangan/android/support/v18/scanner/ScanFilter;-><init>(Ljava/lang/String;Ljava/lang/String;Landroid/os/ParcelUuid;Landroid/os/ParcelUuid;Landroid/os/ParcelUuid;[B[BI[B[BLno/chuangan/android/support/v18/scanner/ScanFilter$a;)V
+ 
+-    .line 22
+-    new-instance v5, Ljava/util/ArrayList;
++    invoke-virtual {v5, v4}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+ 
+-    invoke-direct {v5}, Ljava/util/ArrayList;-><init>()V
++    :cond_hf4_add_service_filter
++    # Filter 3: the SDK's own CGM advertising service UUID.  Nearby matching
++    # products may pass this native filter, but the existing callback still
++    # rejects every device whose four-character key is not the bound target.
++    new-instance v10, Landroid/os/ParcelUuid;
++
++    sget-object v4, Llda;->a:Ljava/util/UUID;
++
++    invoke-direct {v10, v4}, Landroid/os/ParcelUuid;-><init>(Ljava/util/UUID;)V
++
++    const/4 v8, 0x0
++
++    const/4 v9, 0x0
++
++    const/4 v11, 0x0
++
++    const/4 v12, 0x0
++
++    const/4 v13, 0x0
++
++    const/4 v14, 0x0
++
++    const/4 v15, -0x1
++
++    const/16 v16, 0x0
++
++    const/16 v17, 0x0
++
++    const/16 v18, 0x0
++
++    new-instance v4, Lno/chuangan/android/support/v18/scanner/ScanFilter;
++
++    move-object v7, v4
++
++    invoke-direct/range {v7 .. v18}, Lno/chuangan/android/support/v18/scanner/ScanFilter;-><init>(Ljava/lang/String;Ljava/lang/String;Landroid/os/ParcelUuid;Landroid/os/ParcelUuid;Landroid/os/ParcelUuid;[B[BI[B[BLno/chuangan/android/support/v18/scanner/ScanFilter$a;)V
+ 
+     .line 23
+     invoke-virtual {v5, v4}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+ 
++    :goto_hf4_filters_ready
++    sget-object v4, Lp/a;->m:Landroid/content/Context;
++
++    invoke-static {v4}, Lcom/sisensing/common/ble/BleReconnectV16;->logFilteredScan(Landroid/content/Context;)V
++
+     .line 24
+     iget-object v4, v6, Lp/a;->l:Lp/a$c;
+ 
+diff --git a/smali_classes8/Aaa.smali b/smali_classes8/Aaa.smali
+index 8ecd23e..a158aa7 100644
+--- a/smali_classes8/Aaa.smali
++++ b/smali_classes8/Aaa.smali
+@@ -141,6 +141,10 @@
+     if-lez v2, :sisensing_return
+     sput-wide v0, Lcom/sisensing/cgms/Aaa;->lastBroadcastTime:J
+ 
++    iget-object v0, p0, Lcom/sisensing/cgms/Aaa;->mContext:Landroid/content/Context;
++
++    invoke-static {v0}, Lcom/sisensing/common/ble/BleReconnectV16;->onData(Landroid/content/Context;)V
++
+     const-string v0, "device"
+     const-string v1, "sgv"
+ 
+diff --git a/smali_classes8/com/sisensing/common/ble/BleReconnectV16.smali b/smali_classes8/com/sisensing/common/ble/BleReconnectV16.smali
+new file mode 100644
+--- /dev/null
++++ b/smali_classes8/com/sisensing/common/ble/BleReconnectV16.smali
+@@ -0,0 +1,808 @@
++.class public final Lcom/sisensing/common/ble/BleReconnectV16;
++.super Ljava/lang/Object;
++.source "BleReconnectV16.java"
++
++# v16 only: bounded BLE reconnect supervision and privacy-safe diagnostics.
++
++.field private static final MSG_RECONNECT:I = 0x3e8
++
++.field private static retryAttempt:I
++
++.field private static transitionStartElapsed:J
++
++.field private static lastSoftResetElapsed:J
++
++.field private static healthWindowStartElapsed:J
++
++.field private static healthResetCount:I
++
++.field private static lastValidDataElapsed:J
++
++
++.method private constructor <init>()V
++    .locals 0
++
++    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
++
++    return-void
++.end method
++
++.method public static log(Landroid/content/Context;Ljava/lang/String;)V
++    .locals 10
++
++    :try_start_0
++    const-string v0, "SiSensingBLEv16"
++
++    invoke-static {v0, p1}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
++
++    const-string v0, "ble_reconnect_v16"
++
++    const/4 v1, 0x0
++
++    invoke-virtual {p0, v0, v1}, Landroid/content/Context;->getSharedPreferences(Ljava/lang/String;I)Landroid/content/SharedPreferences;
++
++    move-result-object v0
++
++    const-string v1, "seq"
++
++    const-wide/16 v2, 0x0
++
++    invoke-interface {v0, v1, v2, v3}, Landroid/content/SharedPreferences;->getLong(Ljava/lang/String;J)J
++
++    move-result-wide v1
++
++    const-wide/16 v3, 0x1
++
++    add-long/2addr v1, v3
++
++    new-instance v3, Ljava/lang/StringBuilder;
++
++    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
++
++    invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
++
++    move-result-wide v4
++
++    invoke-virtual {v3, v4, v5}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
++
++    const-string v4, "|"
++
++    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
++
++    move-result-wide v5
++
++    invoke-virtual {v3, v5, v6}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v3, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object p1
++
++    invoke-interface {v0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
++
++    move-result-object v3
++
++    const-string v4, "seq"
++
++    invoke-interface {v3, v4, v1, v2}, Landroid/content/SharedPreferences$Editor;->putLong(Ljava/lang/String;J)Landroid/content/SharedPreferences$Editor;
++
++    const-wide/16 v4, 0xc8
++
++    rem-long v4, v1, v4
++
++    new-instance v6, Ljava/lang/StringBuilder;
++
++    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
++
++    const-string v7, "e_"
++
++    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v6, v4, v5}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object v4
++
++    invoke-interface {v3, v4, p1}, Landroid/content/SharedPreferences$Editor;->putString(Ljava/lang/String;Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;
++
++    invoke-interface {v3}, Landroid/content/SharedPreferences$Editor;->apply()V
++    :try_end_0
++    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
++
++    return-void
++
++    :catch_0
++    move-exception p0
++
++    return-void
++.end method
++
++.method public static logFilteredScan(Landroid/content/Context;)V
++    .locals 2
++
++    const-string v0, "power"
++
++    invoke-virtual {p0, v0}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
++
++    move-result-object v0
++
++    check-cast v0, Landroid/os/PowerManager;
++
++    invoke-virtual {v0}, Landroid/os/PowerManager;->isInteractive()Z
++
++    move-result v0
++
++    if-eqz v0, :cond_screen_off
++
++    const-string v0, "UNFILTERED_SCAN_SCREEN_ON_HF4"
++
++    goto :goto_log
++
++    :cond_screen_off
++    const-string v0, "FILTERED_SCAN_SCREEN_OFF_MULTI_HF4"
++
++    :goto_log
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->log(Landroid/content/Context;Ljava/lang/String;)V
++
++    return-void
++.end method
++
++.method public static logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++    .locals 0
++
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->log(Landroid/content/Context;Ljava/lang/String;)V
++
++    return-void
++.end method
++
++.method public static logEventInt(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;I)V
++    .locals 2
++
++    new-instance v0, Ljava/lang/StringBuilder;
++
++    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
++
++    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    const-string v1, "_"
++
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v0, p2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object v0
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    return-void
++.end method
++
++.method private static schedule(Lcom/sisensing/common/ble/LocalBleService;J)V
++    .locals 2
++
++    iget-object v0, p0, Lcom/sisensing/common/ble/LocalBleService;->l1:Landroid/os/Handler;
++
++    const/16 v1, 0x3e8
++
++    invoke-virtual {v0, v1}, Landroid/os/Handler;->removeMessages(I)V
++
++    iget-object v0, p0, Lcom/sisensing/common/ble/LocalBleService;->l1:Landroid/os/Handler;
++
++    invoke-virtual {v0, v1, p1, p2}, Landroid/os/Handler;->sendEmptyMessageDelayed(IJ)Z
++
++    return-void
++.end method
++
++.method public static scheduleDisconnected(Lcom/sisensing/common/ble/LocalBleService;)V
++    .locals 5
++
++    iget-boolean v0, p0, Lcom/sisensing/common/ble/LocalBleService;->s:Z
++
++    if-eqz v0, :cond_not_stopped
++
++    const-string v0, "RETRY_PAUSED_USER_STOP"
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    return-void
++
++    :cond_not_stopped
++    invoke-static {}, Lg60;->a()Lg60;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Lg60;->c()Z
++
++    move-result v0
++
++    if-eqz v0, :cond_long_pause
++
++    invoke-static {}, Lqu9;->O0()Z
++
++    move-result v0
++
++    if-eqz v0, :cond_long_pause
++
++    iget-object v0, p0, Lcom/sisensing/common/ble/LocalBleService;->B:Lcom/sisensing/common/entity/Device/DeviceEntity;
++
++    if-eqz v0, :cond_long_pause
++
++    invoke-virtual {v0}, Lcom/sisensing/common/entity/Device/DeviceEntity;->getDeviceName()Ljava/lang/String;
++
++    move-result-object v0
++
++    if-eqz v0, :cond_long_pause
++
++    invoke-virtual {v0}, Ljava/lang/String;->length()I
++
++    move-result v0
++
++    if-nez v0, :cond_check_busy
++
++    :cond_long_pause
++    const-wide/32 v0, 0xea60
++
++    invoke-static {p0, v0, v1}, Lcom/sisensing/common/ble/BleReconnectV16;->schedule(Lcom/sisensing/common/ble/LocalBleService;J)V
++
++    const-string v0, "RETRY_PAUSED_GATE_60S"
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    return-void
++
++    :cond_check_busy
++    iget-boolean v0, p0, Lcom/sisensing/common/ble/LocalBleService;->e:Z
++
++    if-nez v0, :cond_busy
++
++    iget-boolean v0, p0, Lcom/sisensing/common/ble/LocalBleService;->i:Z
++
++    if-eqz v0, :cond_backoff
++
++    :cond_busy
++    const-wide/16 v0, 0x3a98
++
++    invoke-static {p0, v0, v1}, Lcom/sisensing/common/ble/BleReconnectV16;->schedule(Lcom/sisensing/common/ble/LocalBleService;J)V
++
++    const-string v0, "RETRY_WAIT_BUSY_15S"
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    return-void
++
++    :cond_backoff
++    sget v0, Lcom/sisensing/common/ble/BleReconnectV16;->retryAttempt:I
++
++    if-lez v0, :cond_initial
++
++    const/4 v1, 0x1
++
++    if-ne v0, v1, :cond_attempt_2
++
++    const-wide/16 v1, 0x3a98
++
++    goto :goto_schedule
++
++    :cond_attempt_2
++    const/4 v1, 0x2
++
++    if-ne v0, v1, :cond_attempt_3
++
++    const-wide/16 v1, 0x7530
++
++    goto :goto_schedule
++
++    :cond_attempt_3
++    const/4 v1, 0x3
++
++    if-ne v0, v1, :cond_attempt_4
++
++    const-wide/32 v1, 0xea60
++
++    goto :goto_schedule
++
++    :cond_attempt_4
++    const-wide/32 v1, 0x1d4c0
++
++    goto :goto_schedule
++
++    :cond_initial
++    invoke-static {}, Ltc8;->r()Z
++
++    move-result v1
++
++    if-eqz v1, :cond_initial_unlocked
++
++    const-wide/16 v1, 0x1388
++
++    goto :goto_schedule
++
++    :cond_initial_unlocked
++    const-wide/16 v1, 0x5dc
++
++    :goto_schedule
++    invoke-static {p0, v1, v2}, Lcom/sisensing/common/ble/BleReconnectV16;->schedule(Lcom/sisensing/common/ble/LocalBleService;J)V
++
++    const-string v3, "RETRY_SCHEDULE_ATTEMPT"
++
++    invoke-static {p0, v3, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEventInt(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;I)V
++
++    return-void
++.end method
++
++.method public static onConnectStartResult(Lcom/sisensing/common/ble/LocalBleService;I)V
++    .locals 4
++
++    const-string v0, "CONNECT_START_RC"
++
++    invoke-static {p0, v0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->logEventInt(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;I)V
++
++    if-eqz p1, :cond_accepted
++
++    const/16 v0, 0xd
++
++    if-eq p1, v0, :cond_busy
++
++    const/16 v0, 0xe
++
++    if-ne p1, v0, :cond_rejected
++
++    :cond_busy
++    sget-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->transitionStartElapsed:J
++
++    const-wide/16 v2, 0x0
++
++    cmp-long p1, v0, v2
++
++    if-nez p1, :cond_schedule
++
++    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
++
++    move-result-wide v0
++
++    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->transitionStartElapsed:J
++
++    goto :cond_schedule
++
++    :cond_rejected
++    const-wide/16 v0, 0x0
++
++    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->transitionStartElapsed:J
++
++    invoke-static {}, Lcom/sisensing/common/ble/BleReconnectV16;->incrementAttempt()V
++
++    invoke-static {p0}, Lcom/sisensing/common/ble/BleReconnectV16;->scheduleDisconnected(Lcom/sisensing/common/ble/LocalBleService;)V
++
++    return-void
++
++    :cond_accepted
++    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
++
++    move-result-wide v0
++
++    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->transitionStartElapsed:J
++
++    invoke-static {}, Lcom/sisensing/common/ble/BleReconnectV16;->incrementAttempt()V
++
++    :cond_schedule
++    const-wide/16 v0, 0x3a98
++
++    invoke-static {p0, v0, v1}, Lcom/sisensing/common/ble/BleReconnectV16;->schedule(Lcom/sisensing/common/ble/LocalBleService;J)V
++
++    return-void
++.end method
++
++.method private static incrementAttempt()V
++    .locals 2
++
++    sget v0, Lcom/sisensing/common/ble/BleReconnectV16;->retryAttempt:I
++
++    const/4 v1, 0x4
++
++    if-ge v0, v1, :cond_done
++
++    add-int/lit8 v0, v0, 0x1
++
++    sput v0, Lcom/sisensing/common/ble/BleReconnectV16;->retryAttempt:I
++
++    :cond_done
++    return-void
++.end method
++
++.method public static onState(Lcom/sisensing/common/ble/LocalBleService;I)V
++    .locals 4
++
++    const-string v0, "STATE"
++
++    invoke-static {p0, v0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->logEventInt(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;I)V
++
++    const/4 v0, 0x1
++
++    if-ne p1, v0, :cond_not_connected
++
++    const/4 v0, 0x0
++
++    sput v0, Lcom/sisensing/common/ble/BleReconnectV16;->retryAttempt:I
++
++    const-wide/16 v0, 0x0
++
++    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->transitionStartElapsed:J
++
++    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
++
++    move-result-wide v0
++
++    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->lastValidDataElapsed:J
++
++    const-wide/32 v0, 0xea60
++
++    invoke-static {p0, v0, v1}, Lcom/sisensing/common/ble/BleReconnectV16;->schedule(Lcom/sisensing/common/ble/LocalBleService;J)V
++
++    return-void
++
++    :cond_not_connected
++    if-nez p1, :cond_transition
++
++    const-wide/16 v0, 0x0
++
++    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->transitionStartElapsed:J
++
++    invoke-static {p0}, Lcom/sisensing/common/ble/BleReconnectV16;->scheduleDisconnected(Lcom/sisensing/common/ble/LocalBleService;)V
++
++    return-void
++
++    :cond_transition
++    const/4 v0, 0x2
++
++    if-ne p1, v0, :cond_check_scanning
++
++    goto :goto_transition
++
++    :cond_check_scanning
++    const/4 v0, 0x4
++
++    if-ne p1, v0, :cond_other
++
++    :goto_transition
++    sget-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->transitionStartElapsed:J
++
++    const-wide/16 v2, 0x0
++
++    cmp-long p1, v0, v2
++
++    if-nez p1, :cond_transition_scheduled
++
++    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
++
++    move-result-wide v0
++
++    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->transitionStartElapsed:J
++
++    :cond_transition_scheduled
++    const-wide/16 v0, 0x3a98
++
++    invoke-static {p0, v0, v1}, Lcom/sisensing/common/ble/BleReconnectV16;->schedule(Lcom/sisensing/common/ble/LocalBleService;J)V
++
++    return-void
++
++    :cond_other
++    const-wide/16 v0, 0x7530
++
++    invoke-static {p0, v0, v1}, Lcom/sisensing/common/ble/BleReconnectV16;->schedule(Lcom/sisensing/common/ble/LocalBleService;J)V
++
++    return-void
++.end method
++
++.method public static onCycle(Lcom/sisensing/common/ble/LocalBleService;)V
++    .locals 8
++
++    iget-boolean v0, p0, Lcom/sisensing/common/ble/LocalBleService;->s:Z
++
++    if-eqz v0, :cond_active
++
++    const-string v0, "CYCLE_STOPPED"
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    return-void
++
++    :cond_active
++    iget v0, p0, Lcom/sisensing/common/ble/LocalBleService;->t:I
++
++    const/4 v1, 0x1
++
++    if-ne v0, v1, :cond_not_connected
++
++    sget-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->lastValidDataElapsed:J
++
++    const-wide/16 v2, 0x0
++
++    cmp-long v2, v0, v2
++
++    if-lez v2, :cond_health_baseline
++
++    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
++
++    move-result-wide v2
++
++    sub-long/2addr v2, v0
++
++    const-wide/32 v0, 0xafc80
++
++    cmp-long v0, v2, v0
++
++    if-gez v0, :cond_health_reset
++
++    goto :cond_health_schedule
++
++    :cond_health_baseline
++    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
++
++    move-result-wide v0
++
++    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->lastValidDataElapsed:J
++
++    :cond_health_schedule
++    const-wide/32 v0, 0xea60
++
++    invoke-static {p0, v0, v1}, Lcom/sisensing/common/ble/BleReconnectV16;->schedule(Lcom/sisensing/common/ble/LocalBleService;J)V
++
++    return-void
++
++    :cond_health_reset
++    const-string v0, "DATA_STALE_12M"
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    const/4 v0, 0x2
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->softReset(Lcom/sisensing/common/ble/LocalBleService;I)V
++
++    return-void
++
++    :cond_not_connected
++    if-nez v0, :cond_transition_state
++
++    goto :goto_check_transition
++
++    :cond_transition_state
++    const/4 v1, 0x2
++
++    if-ne v0, v1, :cond_check_scanning
++
++    goto :goto_check_transition
++
++    :cond_check_scanning
++    const/4 v1, 0x4
++
++    if-ne v0, v1, :cond_other
++
++    :goto_check_transition
++    sget-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->transitionStartElapsed:J
++
++    const-wide/16 v2, 0x0
++
++    cmp-long v2, v0, v2
++
++    if-lez v2, :cond_disconnected_schedule
++
++    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
++
++    move-result-wide v2
++
++    sub-long/2addr v2, v0
++
++    const-wide/32 v0, 0x124f8
++
++    cmp-long v0, v2, v0
++
++    if-gez v0, :cond_transition_reset
++
++    const-wide/16 v0, 0x3a98
++
++    invoke-static {p0, v0, v1}, Lcom/sisensing/common/ble/BleReconnectV16;->schedule(Lcom/sisensing/common/ble/LocalBleService;J)V
++
++    return-void
++
++    :cond_transition_reset
++    const-string v0, "TRANSITION_TIMEOUT_75S"
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    const/4 v0, 0x1
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->softReset(Lcom/sisensing/common/ble/LocalBleService;I)V
++
++    return-void
++
++    :cond_disconnected_schedule
++    invoke-static {p0}, Lcom/sisensing/common/ble/BleReconnectV16;->scheduleDisconnected(Lcom/sisensing/common/ble/LocalBleService;)V
++
++    return-void
++
++    :cond_other
++    const-wide/16 v0, 0x7530
++
++    invoke-static {p0, v0, v1}, Lcom/sisensing/common/ble/BleReconnectV16;->schedule(Lcom/sisensing/common/ble/LocalBleService;J)V
++
++    return-void
++.end method
++
++.method public static softReset(Lcom/sisensing/common/ble/LocalBleService;I)V
++    .locals 8
++
++    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
++
++    move-result-wide v0
++
++    const/4 v2, 0x2
++
++    if-ne p1, v2, :cond_rate_limit
++
++    sget-wide v2, Lcom/sisensing/common/ble/BleReconnectV16;->healthWindowStartElapsed:J
++
++    const-wide/16 v4, 0x0
++
++    cmp-long v4, v2, v4
++
++    if-eqz v4, :cond_reset_health_window
++
++    sub-long v2, v0, v2
++
++    const-wide/32 v4, 0x1b7740
++
++    cmp-long v2, v2, v4
++
++    if-lez v2, :cond_check_health_count
++
++    :cond_reset_health_window
++    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->healthWindowStartElapsed:J
++
++    const/4 v2, 0x0
++
++    sput v2, Lcom/sisensing/common/ble/BleReconnectV16;->healthResetCount:I
++
++    :cond_check_health_count
++    sget v2, Lcom/sisensing/common/ble/BleReconnectV16;->healthResetCount:I
++
++    const/4 v3, 0x2
++
++    if-lt v2, v3, :cond_increment_health
++
++    const-string p1, "HEALTH_RESET_LIMIT_2_PER_30M"
++
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    const-wide/32 v0, 0xea60
++
++    invoke-static {p0, v0, v1}, Lcom/sisensing/common/ble/BleReconnectV16;->schedule(Lcom/sisensing/common/ble/LocalBleService;J)V
++
++    return-void
++
++    :cond_increment_health
++    add-int/lit8 v2, v2, 0x1
++
++    sput v2, Lcom/sisensing/common/ble/BleReconnectV16;->healthResetCount:I
++
++    :cond_rate_limit
++    sget-wide v2, Lcom/sisensing/common/ble/BleReconnectV16;->lastSoftResetElapsed:J
++
++    const-wide/16 v4, 0x0
++
++    cmp-long v4, v2, v4
++
++    if-eqz v4, :cond_do_reset
++
++    sub-long v2, v0, v2
++
++    const-wide/16 v4, 0x7530
++
++    cmp-long v2, v2, v4
++
++    if-ltz v2, :cond_reset_rate_limited
++
++    goto :cond_do_reset
++
++    :cond_reset_rate_limited
++    const-string p1, "SOFT_RESET_RATE_LIMITED"
++
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    const-wide/16 v0, 0x3a98
++
++    invoke-static {p0, v0, v1}, Lcom/sisensing/common/ble/BleReconnectV16;->schedule(Lcom/sisensing/common/ble/LocalBleService;J)V
++
++    return-void
++
++    :cond_do_reset
++    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->lastSoftResetElapsed:J
++
++    const-string v0, "SOFT_RESET_REASON"
++
++    invoke-static {p0, v0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->logEventInt(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;I)V
++
++    const/4 v0, 0x0
++
++    iput-boolean v0, p0, Lcom/sisensing/common/ble/LocalBleService;->s:Z
++
++    iget-object v1, p0, Lcom/sisensing/common/ble/LocalBleService;->f:Lno/sisense/android/api/SisenseBluetooth;
++
++    if-eqz v1, :cond_state_reset
++
++    invoke-virtual {v1}, Lno/sisense/android/api/SisenseBluetooth;->shutdownScanProgramAction()V
++
++    iget-object v2, p0, Lcom/sisensing/common/ble/LocalBleService;->w:Landroid/bluetooth/BluetoothDevice;
++
++    iget-object v3, p0, Lcom/sisensing/common/ble/LocalBleService;->z:Ljava/lang/String;
++
++    invoke-virtual {v1, v2, v3}, Lno/sisense/android/api/SisenseBluetooth;->BleBluthtoothDisConnect(Landroid/bluetooth/BluetoothDevice;Ljava/lang/String;)I
++
++    :cond_state_reset
++    iput v0, p0, Lcom/sisensing/common/ble/LocalBleService;->t:I
++
++    const-wide/16 v1, 0x0
++
++    sput-wide v1, Lcom/sisensing/common/ble/BleReconnectV16;->transitionStartElapsed:J
++
++    invoke-virtual {p0, v0}, Lcom/sisensing/common/ble/LocalBleService;->M0(Z)V
++
++    return-void
++.end method
++
++.method public static onScanError(Lcom/sisensing/common/ble/LocalBleService;)V
++    .locals 1
++
++    const-string v0, "SCAN_ERROR_RECOVER"
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    const/4 v0, 0x3
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->softReset(Lcom/sisensing/common/ble/LocalBleService;I)V
++
++    return-void
++.end method
++
++.method public static onSdkServiceDisconnected(Lcom/sisensing/common/ble/LocalBleService;)V
++    .locals 3
++
++    const/4 v0, 0x0
++
++    iput-boolean v0, p0, Lcom/sisensing/common/ble/LocalBleService;->s:Z
++
++    iput v0, p0, Lcom/sisensing/common/ble/LocalBleService;->t:I
++
++    const-wide/16 v1, 0x0
++
++    sput-wide v1, Lcom/sisensing/common/ble/BleReconnectV16;->transitionStartElapsed:J
++
++    const-string v0, "SDK_SERVICE_DISCONNECTED_RECOVER"
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    return-void
++.end method
++
++.method public static onData(Landroid/content/Context;)V
++    .locals 2
++
++    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
++
++    move-result-wide v0
++
++    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->lastValidDataElapsed:J
++
++    const-string v0, "VALID_ENTITY_ACCEPTED"
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->log(Landroid/content/Context;Ljava/lang/String;)V
++
++    return-void
++.end method
