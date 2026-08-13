@@ -1,0 +1,47 @@
+# Third-party/vendor artifacts
+*.apk
+*.aab
+*.apks
+*.idsig
+*.dex
+*.so
+*.aar
+*.jar
+
+# Signing material
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pem
+*.key
+*.pk8
+*.x509.pem
+
+# Decompiled or rebuilt applications
+decoded*/
+decompiled*/
+project/
+build/
+dist/
+out/
+work/
+tmp/
+*.apktool_temp
+
+# Device and test data
+evidence/
+logs/
+logcat*.txt
+bugreport*.zip
+*.db
+*.db-wal
+*.db-shm
+*.mmkv
+
+# Editor / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
