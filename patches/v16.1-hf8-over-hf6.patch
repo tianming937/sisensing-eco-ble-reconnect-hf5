@@ -1,0 +1,2521 @@
+diff --git a/apktool.yml b/apktool.yml
+--- a/apktool.yml
++++ b/apktool.yml
+@@ -12,8 +12,8 @@
+   forcedPackageId: 127
+   renameManifestPackage: null
+ versionInfo:
+-  versionCode: 44
+-  versionName: 02.23.01.00-v16.1-hf6
++  versionCode: 46
++  versionName: 02.23.01.00-v16.1-hf8
+ resourcesAreCompressed: false
+ sharedLibrary: false
+ sparseResources: false
+@@ -37,7 +37,22 @@
+   functions_es.properties: 8
+   functions_fr.properties: 8
+   functions_nl.properties: 8
++  kotlin/annotation/annotation.kotlin_builtins: 8
++  kotlin/collections/collections.kotlin_builtins: 8
++  kotlin/coroutines/coroutines.kotlin_builtins: 8
++  kotlin/internal/internal.kotlin_builtins: 8
++  kotlin/kotlin.kotlin_builtins: 8
++  kotlin/ranges/ranges.kotlin_builtins: 8
++  kotlin/reflect/reflect.kotlin_builtins: 8
+   kotlin-tooling-metadata.json: 8
++  META-INF/services/a26: 8
++  META-INF/services/b95: 8
++  META-INF/services/com.tencent.qcloud.tuicore.interfaces.TUIInitializer: 8
++  META-INF/services/javax.ws.rs.ext.MessageBodyReader: 8
++  META-INF/services/javax.ws.rs.ext.MessageBodyWriter: 8
++  META-INF/services/javax.ws.rs.ext.Providers: 8
++  META-INF/services/org.glassfish.jersey.internal.spi.AutoDiscoverable: 8
++  META-INF/services/wk1: 8
+   network-common.properties: 8
+   network-framework-compat.properties: 8
+   network-grs.properties: 8
+diff --git a/smali_classes5/com/sisensing/common/ble/LocalBleService.smali b/smali_classes5/com/sisensing/common/ble/LocalBleService.smali
+--- a/smali_classes5/com/sisensing/common/ble/LocalBleService.smali
++++ b/smali_classes5/com/sisensing/common/ble/LocalBleService.smali
+@@ -6009,11 +6009,19 @@
+     return-object v0
+ .end method
+ 
+-.method public final X0()V
++.method public final X0()Z
+     .registers 3
+ 
+     .line 1
+-    invoke-virtual {p0}, Lcom/sisensing/common/ble/LocalBleService;->b1()V
++    invoke-virtual {p0}, Lcom/sisensing/common/ble/LocalBleService;->b1()Z
++
++    move-result v0
++
++    if-nez v0, :cond_hf8_fgs_ready
++
++    return v0
++
++    :cond_hf8_fgs_ready
+ 
+     .line 2
+     invoke-virtual {p0}, Lcom/sisensing/common/ble/LocalBleService;->c1()V
+@@ -6118,7 +6126,9 @@
+ 
+     invoke-virtual {v0, p0, v1}, Lpu5;->f(Landroid/content/Context;Lpu5$a;)V
+ 
+-    return-void
++    const/4 v0, 0x1
++
++    return v0
+ .end method
+ 
+ .method public a(Lcom/sisensing/common/entity/Device/DeviceEntity;)V
+@@ -6164,7 +6174,7 @@
+     return-void
+ .end method
+ 
+-.method public final b1()V
++.method public final b1()Z
+     .registers 7
+     .annotation build Landroid/annotation/SuppressLint;
+         value = {
+@@ -6215,46 +6225,23 @@
+ 
+     iput-object v0, p0, Lcom/sisensing/common/ble/LocalBleService;->c:Landroid/app/Notification;
+ 
+-    .line 6
+-    sget v1, Landroid/os/Build$VERSION;->SDK_INT:I
+-
+-    const-string v2, "bsNotification"
+-
+     const/16 v3, 0x22b8
+ 
+     const/4 v4, 0x0
+ 
+-    const/16 v5, 0x1d
+-
+-    if-lt v1, v5, :cond_41
+-
+-    if-nez v0, :cond_3b
+-
+-    .line 7
+-    invoke-static {v2}, Lni4;->S(Ljava/lang/String;)V
+-
+-    move-object v0, v4
+-
+-    :cond_3b
+-    const/16 v1, 0x10
+-
+-    invoke-virtual {p0, v3, v0, v1}, Landroid/app/Service;->startForeground(ILandroid/app/Notification;I)V
+-
+-    goto :goto_4a
+-
+-    :cond_41
+-    if-nez v0, :cond_47
+-
+-    .line 8
+-    invoke-static {v2}, Lni4;->S(Ljava/lang/String;)V
+-
+-    move-object v0, v4
+-
+-    :cond_47
+-    invoke-virtual {p0, v3, v0}, Landroid/app/Service;->startForeground(ILandroid/app/Notification;)V
+-
++    # hf8: Android 14+ validates connectedDevice prerequisites at the exact
++    # startForeground call. Guard and contain SecurityException so a transient
++    # permission/unlock state cannot become a START_STICKY crash loop.
++    invoke-static {p0, v3, v0}, Lcom/sisensing/common/ble/BleForegroundGuardHf8;->start(Lcom/sisensing/common/ble/LocalBleService;ILandroid/app/Notification;)Z
++
++    move-result v1
++
++    if-nez v1, :cond_hf8_fgs_started
++
++    return v1
++
++    :cond_hf8_fgs_started
+     .line 9
+-    :goto_4a
+     sget v0, Lcom/sisensing/common/a$r;->common_connect_probe_to_view_blood_sugar_data:I
+ 
+     invoke-virtual {p0, v0}, Landroid/app/Service;->getString(I)Ljava/lang/String;
+@@ -6267,7 +6254,9 @@
+ 
+     invoke-virtual {p0, v4, v0}, Lcom/sisensing/common/ble/LocalBleService;->H1(Lcom/sisensing/common/entity/BloodGlucoseEntity/BloodGlucoseEntity;Ljava/lang/String;)V
+ 
+-    return-void
++    const/4 v0, 0x1
++
++    return v0
+ .end method
+ 
+ .method public c()Z
+@@ -6647,8 +6636,10 @@
+ 
+     const/4 v0, 0x1
+ 
+-    .line 1
+-    iput-boolean v0, p0, Lcom/sisensing/common/ble/LocalBleService;->s:Z
++    # hf8: g() is a transport cleanup primitive and is also called by
++    # service-internal timeout/switch/destroy paths. It must not mutate the
++    # persisted user-pause semantic stored in s. Explicit UI/business stops
++    # go through LocalBleManager.g() -> r1(true) instead.
+ 
+     .line 2
+     iget-object v1, p0, Lcom/sisensing/common/ble/LocalBleService;->B:Lcom/sisensing/common/entity/Device/DeviceEntity;
+@@ -8280,6 +8271,30 @@
+         .end annotation
+     .end param
+ 
++    # hf8: callbacks from a previous GATT/scan generation may arrive after the
++    # user explicitly paused BLE. Persisted user intent is authoritative and
++    # must not be reversed by a late CONNECTED/DISCONNECTED callback.
++    invoke-static {p0}, Lcom/sisensing/common/ble/BleColdStartRestoreHf6;->isManualStop(Landroid/content/Context;)Z
++
++    move-result v0
++
++    if-eqz v0, :cond_hf8_state_allowed
++
++    const/4 v0, 0x1
++
++    iput-boolean v0, p0, Lcom/sisensing/common/ble/LocalBleService;->s:Z
++
++    const/4 v0, 0x0
++
++    iput v0, p0, Lcom/sisensing/common/ble/LocalBleService;->t:I
++
++    const-string v0, "STALE_STATE_IGNORED_MANUAL_STOP_HF8"
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    return-void
++
++    :cond_hf8_state_allowed
+     .line 1
+     iput p3, p0, Lcom/sisensing/common/ble/LocalBleService;->t:I
+ 
+@@ -8421,9 +8436,6 @@
+     .line 9
+     iput-object p1, p0, Lcom/sisensing/common/ble/LocalBleService;->w:Landroid/bluetooth/BluetoothDevice;
+ 
+-    .line 10
+-    iput-boolean v2, p0, Lcom/sisensing/common/ble/LocalBleService;->s:Z
+-
+     .line 11
+     sput-boolean v0, Lqu9;->p0:Z
+ 
+@@ -8456,10 +8468,6 @@
+     :goto_a3
+     invoke-virtual {p2}, Lrx0;->m()V
+ 
+-    const/4 p1, 0x1
+-
+-    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->onState(Lcom/sisensing/common/ble/LocalBleService;I)V
+-
+     goto :goto_ba
+ 
+     :cond_a7
+@@ -8489,7 +8497,15 @@
+ .method public onCreate()V
+     .registers 2
+ 
+-    invoke-virtual {p0}, Lcom/sisensing/common/ble/LocalBleService;->X0()V
++    invoke-virtual {p0}, Lcom/sisensing/common/ble/LocalBleService;->X0()Z
++
++    move-result v0
++
++    if-nez v0, :cond_hf8_service_ready
++
++    return-void
++
++    :cond_hf8_service_ready
+ 
+     const-string v0, "LOCAL_SERVICE_CREATE"
+ 
+@@ -8887,6 +8903,39 @@
+         .end annotation
+     .end param
+ 
++    # hf8 r2: onCreate may reject foreground startup on Android 14+ when the
++    # user is locked or Bluetooth prerequisites are missing. Do not return
++    # START_STICKY in that state: it leaves the system waiting for a forbidden
++    # startForeground call and becomes an FGS timeout ANR.
++    invoke-static {}, Lcom/sisensing/common/ble/BleForegroundGuardHf8;->isReady()Z
++
++    move-result p2
++
++    if-nez p2, :cond_hf8_fgs_command_ready
++
++    const-string p1, "FGS_START_COMMAND_ABORT_NOT_STICKY_HF8"
++
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    invoke-virtual {p0}, Landroid/app/Service;->stopSelf()V
++
++    const/4 p1, 0x2
++
++    return p1
++
++    :cond_hf8_fgs_command_ready
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->handleServiceIntent(Lcom/sisensing/common/ble/LocalBleService;Landroid/content/Intent;)Z
++
++    move-result p2
++
++    if-eqz p2, :cond_hf7_normal_start
++
++    const/4 p1, 0x1
++
++    return p1
++
++    :cond_hf7_normal_start
++
+     if-nez p1, :cond_hf6_explicit_intent
+ 
+     const-string p1, "LOCAL_SERVICE_START_NULL_INTENT_HF6"
+@@ -10026,6 +10075,8 @@
+     # hf6: this setter is the explicit stop/resume semantic exposed by the
+     # manager. Persist it so process recreation cannot reverse user intent.
+     invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleColdStartRestoreHf6;->setManualStop(Landroid/content/Context;Z)V
++
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->onManualStopChanged(Lcom/sisensing/common/ble/LocalBleService;Z)V
+ 
+     return-void
+ .end method
+diff --git a/smali_classes5/com/sisensing/common/ble/LocalBleService$m.smali b/smali_classes5/com/sisensing/common/ble/LocalBleService$m.smali
+--- a/smali_classes5/com/sisensing/common/ble/LocalBleService$m.smali
++++ b/smali_classes5/com/sisensing/common/ble/LocalBleService$m.smali
+@@ -52,6 +52,30 @@
+ 
+     if-ne p1, v0, :cond_1f1
+ 
++    iget-object p1, p0, Lcom/sisensing/common/ble/LocalBleService$m;->a:Lcom/sisensing/common/ble/LocalBleService;
++
++    const-string v0, "HANDLER_CYCLE_EXEC_HF7"
++
++    invoke-static {p1, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    # hf8: a hard scanner cooldown is global for this app UID. Do not let the
++    # original Handler path invoke the vendor scanner while Android is still
++    # rejecting registrations. onCycle() below preserves the one due alarm.
++    invoke-static {}, Lcom/sisensing/common/ble/BlePendingScanHf7;->isCoolingDown()Z
++
++    move-result p1
++
++    if-nez p1, :goto_1f1
++
++    # A healthy PendingIntent ScanLease owns discovery while disconnected.
++    # Alarm/Handler ticks are health checks only; the real target callback
++    # stops the lease before it sends this Handler message for vendor connect.
++    invoke-static {}, Lcom/sisensing/common/ble/BlePendingScanHf7;->isActive()Z
++
++    move-result p1
++
++    if-nez p1, :goto_1f1
++
+     .line 3
+     iget-object p1, p0, Lcom/sisensing/common/ble/LocalBleService$m;->a:Lcom/sisensing/common/ble/LocalBleService;
+ 
+diff --git a/smali_classes5/com/sisensing/common/ble/a.smali b/smali_classes5/com/sisensing/common/ble/a.smali
+--- a/smali_classes5/com/sisensing/common/ble/a.smali
++++ b/smali_classes5/com/sisensing/common/ble/a.smali
+@@ -1385,11 +1385,13 @@
+     if-eqz v0, :cond_9
+ 
+     .line 2
+-    # hf6: calls through LocalBleManager are explicit UI/business stop
+-    # requests. Service-internal cleanup calls do not pass through here.
++    # hf8: calls through LocalBleManager are explicit UI/business stop
++    # requests. Route through the semantic setter so memory, persistence,
++    # watchdogs, alarm and scan lease are changed atomically. Direct
++    # LocalBleService.g() calls are transport-only and never pause retries.
+     const/4 v1, 0x1
+ 
+-    invoke-static {v0, v1}, Lcom/sisensing/common/ble/BleColdStartRestoreHf6;->setManualStop(Landroid/content/Context;Z)V
++    invoke-virtual {v0, v1}, Lcom/sisensing/common/ble/LocalBleService;->r1(Z)V
+ 
+     invoke-virtual {v0}, Lcom/sisensing/common/ble/LocalBleService;->g()V
+ 
+diff --git a/smali_classes7/p/a$c.smali b/smali_classes7/p/a$c.smali
+--- a/smali_classes7/p/a$c.smali
++++ b/smali_classes7/p/a$c.smali
+@@ -63,6 +63,14 @@
+ 
+     .line 4
+     :try_start_5
++    invoke-interface {p1}, Ljava/util/List;->size()I
++
++    move-result v1
++
++    sget-object v2, Lp/a;->m:Landroid/content/Context;
++
++    invoke-static {v2, v1}, Lcom/sisensing/common/ble/BleReconnectV16;->logScanBatch(Landroid/content/Context;I)V
++
+     new-instance v1, Ljava/util/ArrayList;
+ 
+     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
+@@ -356,6 +364,34 @@
+ 
+     .line 34
+     :cond_108
++    iget-object v1, p0, Lp/a$c;->a:Lp/a;
++
++    iget v2, v1, Lp/a;->h:I
++
++    const/4 v3, 0x2
++
++    if-ne v2, v3, :cond_hf7_scan_audit_done
++
++    iget-object v1, v1, Lp/a;->e:Ljava/util/concurrent/ConcurrentHashMap;
++
++    invoke-virtual {v1}, Ljava/util/concurrent/ConcurrentHashMap;->isEmpty()Z
++
++    move-result v1
++
++    sget-object v2, Lp/a;->m:Landroid/content/Context;
++
++    if-eqz v1, :cond_hf7_no_target
++
++    const-string v1, "SCAN_TARGET_CONSUMED_HF7"
++
++    invoke-static {v2, v1}, Lcom/sisensing/common/ble/BleReconnectV16;->log(Landroid/content/Context;Ljava/lang/String;)V
++
++    goto :cond_hf7_scan_audit_done
++
++    :cond_hf7_no_target
++    invoke-static {v2}, Lcom/sisensing/common/ble/BleReconnectV16;->logScanNoTarget(Landroid/content/Context;)V
++
++    :cond_hf7_scan_audit_done
+     monitor-exit v0
+ 
+     return-void
+@@ -489,21 +525,29 @@
+ .end method
+ 
+ .method public final onScanResult(ILno/chuangan/android/support/v18/scanner/ScanResult;)V
+-    .registers 4
++    .registers 5
+     .param p2    # Lno/chuangan/android/support/v18/scanner/ScanResult;
+         .annotation build Lz36;
+         .end annotation
+     .end param
+ 
+-    new-instance p1, Ljava/lang/StringBuilder;
+-
+-    invoke-direct {p1}, Ljava/lang/StringBuilder;-><init>()V
+-
+-    const-string v0, "\u626b\u63cf\u7ed3\u679c:result="
+-
+-    invoke-virtual {p1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+-
+-    invoke-virtual {p1, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
++    # hf7: route single and batch callbacks through one matcher. The target
++    # map removal in onBatchScanResults keeps duplicate delivery single-flight.
++    sget-object p1, Lp/a;->m:Landroid/content/Context;
++
++    const-string v0, "SCAN_SINGLE_ROUTED_TO_BATCH_HF7"
++
++    invoke-static {p1, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->log(Landroid/content/Context;Ljava/lang/String;)V
++
++    new-instance p1, Ljava/util/ArrayList;
++
++    const/4 v0, 0x1
++
++    invoke-direct {p1, v0}, Ljava/util/ArrayList;-><init>(I)V
++
++    invoke-virtual {p1, p2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
++
++    invoke-virtual {p0, p1}, Lp/a$c;->onBatchScanResults(Ljava/util/List;)V
+ 
+     return-void
+ .end method
+diff --git a/smali_classes8/com/sisensing/common/ble/BleReconnectV16.smali b/smali_classes8/com/sisensing/common/ble/BleReconnectV16.smali
+--- a/smali_classes8/com/sisensing/common/ble/BleReconnectV16.smali
++++ b/smali_classes8/com/sisensing/common/ble/BleReconnectV16.smali
+@@ -18,6 +18,22 @@
+ 
+ .field private static lastValidDataElapsed:J
+ 
++.field private static connectedStateElapsed:J
++
++.field private static currentState:I
++
++.field private static lastValidDataAuditElapsed:J
++
++.field private static validDataSinceAudit:I
++
++.field private static disconnectStartElapsed:J
++
++.field private static watchdogStage:I
++
++.field private static lastScanBatchLogElapsed:J
++
++.field private static lastScanNoTargetLogElapsed:J
++
+ 
+ .method private constructor <init>()V
+     .locals 0
+@@ -34,6 +50,8 @@
+     const-string v0, "SiSensingBLEv16"
+ 
+     invoke-static {v0, p1}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
++
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleAuditHf7;->append(Landroid/content/Context;Ljava/lang/String;)V
+ 
+     const-string v0, "ble_reconnect_v16"
+ 
+@@ -185,8 +203,114 @@
+     return-void
+ .end method
+ 
++.method public static logEventLong(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;J)V
++    .locals 2
++
++    new-instance v0, Ljava/lang/StringBuilder;
++
++    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
++
++    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    const-string v1, "_"
++
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v0, p2, p3}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object v0
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    return-void
++.end method
++
++.method public static logScanBatch(Landroid/content/Context;I)V
++    .locals 6
++
++    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
++
++    move-result-wide v0
++
++    sget-wide v2, Lcom/sisensing/common/ble/BleReconnectV16;->lastScanBatchLogElapsed:J
++
++    sub-long v2, v0, v2
++
++    const-wide/16 v4, 0x1388
++
++    cmp-long v2, v2, v4
++
++    if-gez v2, :cond_log
++
++    return-void
++
++    :cond_log
++    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->lastScanBatchLogElapsed:J
++
++    new-instance v0, Ljava/lang/StringBuilder;
++
++    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
++
++    const-string v1, "SCAN_BATCH_COUNT_HF7_"
++
++    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object p1
++
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->log(Landroid/content/Context;Ljava/lang/String;)V
++
++    return-void
++.end method
++
++.method public static logScanNoTarget(Landroid/content/Context;)V
++    .locals 6
++
++    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
++
++    move-result-wide v0
++
++    sget-wide v2, Lcom/sisensing/common/ble/BleReconnectV16;->lastScanNoTargetLogElapsed:J
++
++    sub-long v2, v0, v2
++
++    const-wide/16 v4, 0x1388
++
++    cmp-long v2, v2, v4
++
++    if-gez v2, :cond_log
++
++    return-void
++
++    :cond_log
++    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->lastScanNoTargetLogElapsed:J
++
++    const-string v0, "SCAN_BATCH_NO_TARGET_HF7"
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->log(Landroid/content/Context;Ljava/lang/String;)V
++
++    return-void
++.end method
++
+ .method private static schedule(Lcom/sisensing/common/ble/LocalBleService;J)V
+-    .locals 2
++    .locals 4
++
++    invoke-static {}, Lcom/sisensing/common/ble/BlePendingScanHf7;->remainingCooldown()J
++
++    move-result-wide v0
++
++    cmp-long v2, v0, p1
++
++    if-lez v2, :cond_hf8_delay_ready
++
++    move-wide p1, v0
++
++    :cond_hf8_delay_ready
+ 
+     iget-object v0, p0, Lcom/sisensing/common/ble/LocalBleService;->l1:Landroid/os/Handler;
+ 
+@@ -198,7 +322,202 @@
+ 
+     invoke-virtual {v0, v1, p1, p2}, Landroid/os/Handler;->sendEmptyMessageDelayed(IJ)Z
+ 
+-    return-void
++    iget v0, p0, Lcom/sisensing/common/ble/LocalBleService;->t:I
++
++    const/4 v1, 0x1
++
++    if-ne v0, v1, :cond_hf7_arm
++
++    invoke-static {p0}, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->cancel(Landroid/content/Context;)V
++
++    invoke-static {p0}, Lcom/sisensing/common/ble/BlePendingScanHf7;->stop(Landroid/content/Context;)V
++
++    goto :goto_hf7_done
++
++    :cond_hf7_arm
++    invoke-static {p0, p1, p2}, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->schedule(Lcom/sisensing/common/ble/LocalBleService;J)V
++
++    :goto_hf7_done
++
++    return-void
++.end method
++
++.method private static markDisconnected(Lcom/sisensing/common/ble/LocalBleService;)V
++    .locals 4
++
++    const-wide/16 v0, 0x0
++
++    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->connectedStateElapsed:J
++
++    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->lastValidDataElapsed:J
++
++    sget-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->disconnectStartElapsed:J
++
++    const-wide/16 v2, 0x0
++
++    cmp-long v0, v0, v2
++
++    if-nez v0, :cond_done
++
++    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
++
++    move-result-wide v0
++
++    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->disconnectStartElapsed:J
++
++    const/4 v0, 0x0
++
++    sput v0, Lcom/sisensing/common/ble/BleReconnectV16;->watchdogStage:I
++
++    const-string v0, "DISCONNECT_BASELINE_HF7"
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    :cond_done
++    return-void
++.end method
++
++.method public static isTransitionInFlight()Z
++    .locals 4
++
++    sget-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->transitionStartElapsed:J
++
++    const-wide/16 v2, 0x0
++
++    cmp-long v0, v0, v2
++
++    if-lez v0, :cond_false
++
++    const/4 v0, 0x1
++
++    return v0
++
++    :cond_false
++    const/4 v0, 0x0
++
++    return v0
++.end method
++
++.method public static onManualStopChanged(Lcom/sisensing/common/ble/LocalBleService;Z)V
++    .locals 3
++
++    const-wide/16 v0, 0x0
++
++    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->disconnectStartElapsed:J
++
++    const/4 v0, 0x0
++
++    sput v0, Lcom/sisensing/common/ble/BleReconnectV16;->watchdogStage:I
++
++    if-eqz p1, :cond_resumed
++
++    const-string p1, "WATCHDOG_RESET_MANUAL_STOP_HF7"
++
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    invoke-static {p0}, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->cancel(Landroid/content/Context;)V
++
++    invoke-static {p0}, Lcom/sisensing/common/ble/BlePendingScanHf7;->stop(Landroid/content/Context;)V
++
++    return-void
++
++    :cond_resumed
++    const-string p1, "WATCHDOG_RESET_MANUAL_RESUME_HF7"
++
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    return-void
++.end method
++
++.method private static runWatchdog(Lcom/sisensing/common/ble/LocalBleService;)Z
++    .locals 7
++
++    iget v0, p0, Lcom/sisensing/common/ble/LocalBleService;->t:I
++
++    const/4 v1, 0x1
++
++    if-ne v0, v1, :cond_active
++
++    const/4 p0, 0x0
++
++    return p0
++
++    :cond_active
++    invoke-static {p0}, Lcom/sisensing/common/ble/BleReconnectV16;->markDisconnected(Lcom/sisensing/common/ble/LocalBleService;)V
++
++    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
++
++    move-result-wide v0
++
++    sget-wide v2, Lcom/sisensing/common/ble/BleReconnectV16;->disconnectStartElapsed:J
++
++    sub-long/2addr v0, v2
++
++    sget v2, Lcom/sisensing/common/ble/BleReconnectV16;->watchdogStage:I
++
++    const-wide/32 v3, 0x493e0
++
++    cmp-long v3, v0, v3
++
++    if-gez v3, :cond_five
++
++    const-wide/32 v3, 0x2bf20
++
++    cmp-long v0, v0, v3
++
++    if-gez v0, :cond_three
++
++    const/4 p0, 0x0
++
++    return p0
++
++    :cond_three
++    const/4 v0, 0x1
++
++    if-lt v2, v0, :cond_do_three
++
++    const/4 p0, 0x0
++
++    return p0
++
++    :cond_do_three
++    sput v0, Lcom/sisensing/common/ble/BleReconnectV16;->watchdogStage:I
++
++    const-string v0, "WATCHDOG_3M_REBUILD_HF7"
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    const/4 v0, 0x4
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->softReset(Lcom/sisensing/common/ble/LocalBleService;I)V
++
++    const/4 p0, 0x1
++
++    return p0
++
++    :cond_five
++    const/4 v0, 0x2
++
++    if-lt v2, v0, :cond_do_five
++
++    const/4 p0, 0x0
++
++    return p0
++
++    :cond_do_five
++    sput v0, Lcom/sisensing/common/ble/BleReconnectV16;->watchdogStage:I
++
++    const-string v0, "WATCHDOG_5M_REBUILD_HF7"
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    const/4 v0, 0x5
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->softReset(Lcom/sisensing/common/ble/LocalBleService;I)V
++
++    const/4 p0, 0x1
++
++    return p0
+ .end method
+ 
+ .method public static scheduleDisconnected(Lcom/sisensing/common/ble/LocalBleService;)V
+@@ -212,9 +531,15 @@
+ 
+     invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
+ 
++    invoke-static {p0}, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->cancel(Landroid/content/Context;)V
++
++    invoke-static {p0}, Lcom/sisensing/common/ble/BlePendingScanHf7;->stop(Landroid/content/Context;)V
++
+     return-void
+ 
+     :cond_not_stopped
++    invoke-static {p0}, Lcom/sisensing/common/ble/BleReconnectV16;->markDisconnected(Lcom/sisensing/common/ble/LocalBleService;)V
++
+     # hf6: a restarted process has an empty service.B field. Ask the cold
+     # restore coordinator to repopulate it before applying the normal gate.
+     iget-object v0, p0, Lcom/sisensing/common/ble/LocalBleService;->B:Lcom/sisensing/common/entity/Device/DeviceEntity;
+@@ -437,23 +762,41 @@
+ 
+     invoke-static {p0, v0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->logEventInt(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;I)V
+ 
++    sput p1, Lcom/sisensing/common/ble/BleReconnectV16;->currentState:I
++
+     const/4 v0, 0x1
+ 
+     if-ne p1, v0, :cond_not_connected
+ 
++    const-wide/16 v0, 0x0
++
++    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->transitionStartElapsed:J
++
++    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
++
++    move-result-wide v0
++
++    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->connectedStateElapsed:J
++
++    const-wide/16 v0, 0x0
++
++    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->lastValidDataElapsed:J
++
++    const-string v0, "CONNECTED_AWAITING_VALID_DATA_HF8"
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    const-wide/16 v0, 0x0
++
++    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->disconnectStartElapsed:J
++
+     const/4 v0, 0x0
+ 
+-    sput v0, Lcom/sisensing/common/ble/BleReconnectV16;->retryAttempt:I
+-
+-    const-wide/16 v0, 0x0
+-
+-    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->transitionStartElapsed:J
+-
+-    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
+-
+-    move-result-wide v0
+-
+-    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->lastValidDataElapsed:J
++    sput v0, Lcom/sisensing/common/ble/BleReconnectV16;->watchdogStage:I
++
++    invoke-static {p0}, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->cancel(Landroid/content/Context;)V
++
++    invoke-static {p0}, Lcom/sisensing/common/ble/BlePendingScanHf7;->stop(Landroid/content/Context;)V
+ 
+     const-wide/32 v0, 0xea60
+ 
+@@ -464,6 +807,8 @@
+     :cond_not_connected
+     if-nez p1, :cond_transition
+ 
++    invoke-static {p0}, Lcom/sisensing/common/ble/BleReconnectV16;->markDisconnected(Lcom/sisensing/common/ble/LocalBleService;)V
++
+     const-wide/16 v0, 0x0
+ 
+     sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->transitionStartElapsed:J
+@@ -525,9 +870,56 @@
+ 
+     invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
+ 
++    invoke-static {p0}, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->cancel(Landroid/content/Context;)V
++
++    invoke-static {p0}, Lcom/sisensing/common/ble/BlePendingScanHf7;->stop(Landroid/content/Context;)V
++
+     return-void
+ 
+     :cond_active
++    # hf8: error-code cooldown owns the whole scan/connect session, not only
++    # the PendingIntent scanner. Preserve one wake at cooldown expiry and do
++    # not run watchdog resets or vendor connect attempts in the meantime.
++    invoke-static {}, Lcom/sisensing/common/ble/BlePendingScanHf7;->remainingCooldown()J
++
++    move-result-wide v0
++
++    const-wide/16 v2, 0x0
++
++    cmp-long v2, v0, v2
++
++    if-lez v2, :cond_hf8_not_cooling
++
++    invoke-static {p0, v0, v1}, Lcom/sisensing/common/ble/BleReconnectV16;->schedule(Lcom/sisensing/common/ble/LocalBleService;J)V
++
++    return-void
++
++    :cond_hf8_not_cooling
++    # While the filtered PendingIntent ScanLease is alive, the periodic alarm
++    # is only a low-frequency liveness check. Starting the vendor scanner here
++    # would create two owners and recreate hf7's Android status=6 failure.
++    invoke-static {}, Lcom/sisensing/common/ble/BlePendingScanHf7;->isActive()Z
++
++    move-result v0
++
++    if-eqz v0, :cond_hf8_no_scan_lease
++
++    const-wide/32 v0, 0x1d4c0
++
++    invoke-static {p0, v0, v1}, Lcom/sisensing/common/ble/BleReconnectV16;->schedule(Lcom/sisensing/common/ble/LocalBleService;J)V
++
++    return-void
++
++    :cond_hf8_no_scan_lease
++    invoke-static {p0}, Lcom/sisensing/common/ble/BleReconnectV16;->runWatchdog(Lcom/sisensing/common/ble/LocalBleService;)Z
++
++    move-result v0
++
++    if-eqz v0, :cond_hf7_watchdog_clear
++
++    return-void
++
++    :cond_hf7_watchdog_clear
+     iget v0, p0, Lcom/sisensing/common/ble/LocalBleService;->t:I
+ 
+     const/4 v1, 0x1
+@@ -557,11 +949,47 @@
+     goto :cond_health_schedule
+ 
+     :cond_health_baseline
++    sget-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->connectedStateElapsed:J
++
++    const-wide/16 v2, 0x0
++
++    cmp-long v2, v0, v2
++
++    if-lez v2, :cond_hf8_verify_elapsed
++
+     invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
+ 
+     move-result-wide v0
+ 
+-    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->lastValidDataElapsed:J
++    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->connectedStateElapsed:J
++
++    goto :cond_health_schedule
++
++    :cond_hf8_verify_elapsed
++    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
++
++    move-result-wide v2
++
++    sub-long/2addr v2, v0
++
++    # A mature algorithm value may arrive on a five-minute boundary. Allow a
++    # six-minute verification window, but do not call STATE_1 a stable recovery
++    # until one validated entity traverses the algorithm pipeline.
++    const-wide/32 v4, 0x57e40
++
++    cmp-long v6, v2, v4
++
++    if-gez v6, :cond_health_schedule
++
++    const-string v0, "CONNECTION_VERIFY_TIMEOUT_6M_HF8"
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    const/4 v0, 0x6
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->softReset(Lcom/sisensing/common/ble/LocalBleService;I)V
++
++    return-void
+ 
+     :cond_health_schedule
+     const-wide/32 v0, 0xea60
+@@ -744,8 +1172,6 @@
+ 
+     const/4 v0, 0x0
+ 
+-    iput-boolean v0, p0, Lcom/sisensing/common/ble/LocalBleService;->s:Z
+-
+     iget-object v1, p0, Lcom/sisensing/common/ble/LocalBleService;->f:Lno/sisense/android/api/SisenseBluetooth;
+ 
+     if-eqz v1, :cond_state_reset
+@@ -773,13 +1199,16 @@
+ .method public static onScanError(Lcom/sisensing/common/ble/LocalBleService;)V
+     .locals 1
+ 
+-    const-string v0, "SCAN_ERROR_RECOVER"
+-
+-    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
+-
+-    const/4 v0, 0x3
+-
+-    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->softReset(Lcom/sisensing/common/ble/LocalBleService;I)V
++    const-string v0, "SCAN_ERROR_RECOVER_HF8"
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    # The vendor callback does not expose Android's numeric error here. Treat
++    # it conservatively as scanner throttling: stop both scan owners and hold a
++    # hard cooldown before any Handler/alarm path may scan again.
++    const/4 v0, 0x6
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BlePendingScanHf7;->onError(Lcom/sisensing/common/ble/LocalBleService;I)V
+ 
+     return-void
+ .end method
+@@ -789,8 +1218,6 @@
+ 
+     const/4 v0, 0x0
+ 
+-    iput-boolean v0, p0, Lcom/sisensing/common/ble/LocalBleService;->s:Z
+-
+     iput v0, p0, Lcom/sisensing/common/ble/LocalBleService;->t:I
+ 
+     const-wide/16 v1, 0x0
+@@ -805,17 +1232,96 @@
+ .end method
+ 
+ .method public static onData(Landroid/content/Context;)V
+-    .locals 2
++    .locals 8
+ 
+     invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
+ 
+     move-result-wide v0
+ 
++    sget v2, Lcom/sisensing/common/ble/BleReconnectV16;->currentState:I
++
++    const/4 v3, 0x1
++
++    if-ne v2, v3, :goto_audit
++
++    sget-wide v2, Lcom/sisensing/common/ble/BleReconnectV16;->lastValidDataElapsed:J
++
+     sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->lastValidDataElapsed:J
+ 
+-    const-string v0, "VALID_ENTITY_ACCEPTED"
++    const-wide/16 v4, 0x0
++
++    cmp-long v6, v2, v4
++
++    if-nez v6, :goto_audit
++
++    const/4 v2, 0x0
++
++    sput v2, Lcom/sisensing/common/ble/BleReconnectV16;->retryAttempt:I
++
++    sput v2, Lcom/sisensing/common/ble/BleReconnectV16;->watchdogStage:I
++
++    sput v2, Lcom/sisensing/common/ble/BleReconnectV16;->healthResetCount:I
++
++    const-wide/16 v2, 0x0
++
++    sput-wide v2, Lcom/sisensing/common/ble/BleReconnectV16;->disconnectStartElapsed:J
++
++    sput-wide v2, Lcom/sisensing/common/ble/BleReconnectV16;->healthWindowStartElapsed:J
++
++    invoke-static {}, Lcom/sisensing/common/ble/BlePendingScanHf7;->onConnectionVerified()V
++
++    const-string v2, "CONNECTION_VERIFIED_VALID_DATA_HF8"
++
++    invoke-static {p0, v2}, Lcom/sisensing/common/ble/BleReconnectV16;->log(Landroid/content/Context;Ljava/lang/String;)V
++
++    :goto_audit
++    sget v2, Lcom/sisensing/common/ble/BleReconnectV16;->validDataSinceAudit:I
++
++    add-int/lit8 v2, v2, 0x1
++
++    sput v2, Lcom/sisensing/common/ble/BleReconnectV16;->validDataSinceAudit:I
++
++    sget-wide v2, Lcom/sisensing/common/ble/BleReconnectV16;->lastValidDataAuditElapsed:J
++
++    const-wide/16 v4, 0x0
++
++    cmp-long v6, v2, v4
++
++    if-eqz v6, :cond_audit
++
++    sub-long v2, v0, v2
++
++    const-wide/32 v4, 0xea60
++
++    cmp-long v6, v2, v4
++
++    if-ltz v6, :cond_done
++
++    :cond_audit
++    sput-wide v0, Lcom/sisensing/common/ble/BleReconnectV16;->lastValidDataAuditElapsed:J
++
++    sget v2, Lcom/sisensing/common/ble/BleReconnectV16;->validDataSinceAudit:I
++
++    const/4 v3, 0x0
++
++    sput v3, Lcom/sisensing/common/ble/BleReconnectV16;->validDataSinceAudit:I
++
++    new-instance v3, Ljava/lang/StringBuilder;
++
++    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
++
++    const-string v4, "VALID_ENTITY_ACCEPTED_COUNT_HF8="
++
++    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v3, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object v0
+ 
+     invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->log(Landroid/content/Context;Ljava/lang/String;)V
+ 
+-    return-void
+-.end method
++    :cond_done
++    return-void
++.end method
+diff --git a/smali_classes8/com/sisensing/common/ble/BleAuditHf7.smali b/smali_classes8/com/sisensing/common/ble/BleAuditHf7.smali
+new file mode 100644
+--- /dev/null
++++ b/smali_classes8/com/sisensing/common/ble/BleAuditHf7.smali
+@@ -0,0 +1,195 @@
++.class public final Lcom/sisensing/common/ble/BleAuditHf7;
++.super Ljava/lang/Object;
++.source "BleAuditHf7.java"
++
++# Privacy-safe, bounded-by-time BLE audit trail. No account, token, MAC, glucose
++# value, or device name is written. One UTC-day file is retained for seven days.
++
++.method private constructor <init>()V
++    .locals 0
++
++    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
++
++    return-void
++.end method
++
++.method public static declared-synchronized append(Landroid/content/Context;Ljava/lang/String;)V
++    .locals 12
++
++    const-class v0, Lcom/sisensing/common/ble/BleAuditHf7;
++
++    monitor-enter v0
++
++    :try_start_0
++    invoke-virtual {p0}, Landroid/content/Context;->getApplicationContext()Landroid/content/Context;
++
++    move-result-object v1
++
++    const-string v2, "ble_audit_hf8"
++
++    invoke-virtual {v1, v2}, Landroid/content/Context;->getExternalFilesDir(Ljava/lang/String;)Ljava/io/File;
++
++    move-result-object v2
++
++    if-nez v2, :cond_dir_ready
++
++    new-instance v2, Ljava/io/File;
++
++    invoke-virtual {v1}, Landroid/content/Context;->getFilesDir()Ljava/io/File;
++
++    move-result-object v1
++
++    const-string v3, "ble_audit_hf8"
++
++    invoke-direct {v2, v1, v3}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
++
++    :cond_dir_ready
++    invoke-virtual {v2}, Ljava/io/File;->mkdirs()Z
++
++    invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
++
++    move-result-wide v3
++
++    const-wide/32 v5, 0x5265c00
++
++    div-long v7, v3, v5
++
++    new-instance v1, Ljava/lang/StringBuilder;
++
++    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
++
++    const-string v9, "ble_audit_hf8_"
++
++    invoke-virtual {v1, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v1, v7, v8}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
++
++    const-string v7, ".log"
++
++    invoke-virtual {v1, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object v1
++
++    new-instance v7, Ljava/io/File;
++
++    invoke-direct {v7, v2, v1}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
++
++    new-instance v1, Ljava/io/BufferedWriter;
++
++    new-instance v8, Ljava/io/FileWriter;
++
++    const/4 v9, 0x1
++
++    invoke-direct {v8, v7, v9}, Ljava/io/FileWriter;-><init>(Ljava/io/File;Z)V
++
++    invoke-direct {v1, v8}, Ljava/io/BufferedWriter;-><init>(Ljava/io/Writer;)V
++
++    new-instance v7, Ljava/lang/StringBuilder;
++
++    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
++
++    invoke-virtual {v7, v3, v4}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
++
++    const-string v8, "|"
++
++    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
++
++    move-result-wide v10
++
++    invoke-virtual {v7, v10, v11}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    invoke-static {}, Landroid/os/Process;->myPid()I
++
++    move-result v10
++
++    invoke-virtual {v7, v10}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    const-string v10, "power"
++
++    invoke-virtual {p0, v10}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
++
++    move-result-object p0
++
++    check-cast p0, Landroid/os/PowerManager;
++
++    invoke-virtual {p0}, Landroid/os/PowerManager;->isInteractive()Z
++
++    move-result p0
++
++    invoke-virtual {v7, p0}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v7, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    const-string p0, "\n"
++
++    invoke-virtual {v7, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object p0
++
++    invoke-virtual {v1, p0}, Ljava/io/Writer;->write(Ljava/lang/String;)V
++
++    invoke-virtual {v1}, Ljava/io/Writer;->close()V
++
++    const-wide/32 v7, 0x240c8400
++
++    sub-long/2addr v3, v7
++
++    invoke-virtual {v2}, Ljava/io/File;->listFiles()[Ljava/io/File;
++
++    move-result-object p0
++
++    if-eqz p0, :cond_done
++
++    array-length p1, p0
++
++    const/4 v1, 0x0
++
++    :goto_prune
++    if-ge v1, p1, :cond_done
++
++    aget-object v2, p0, v1
++
++    invoke-virtual {v2}, Ljava/io/File;->lastModified()J
++
++    move-result-wide v7
++
++    cmp-long v9, v7, v3
++
++    if-ltz v9, :cond_delete
++
++    goto :goto_next
++
++    :cond_delete
++    invoke-virtual {v2}, Ljava/io/File;->delete()Z
++
++    :goto_next
++    add-int/lit8 v1, v1, 0x1
++
++    goto :goto_prune
++
++    :cond_done
++    monitor-exit v0
++
++    return-void
++    :try_end_0
++    .catchall {:try_start_0 .. :try_end_0} :catchall_0
++
++    :catchall_0
++    move-exception p0
++
++    monitor-exit v0
++
++    return-void
++.end method
+diff --git a/smali_classes8/com/sisensing/common/ble/BlePendingScanHf7.smali b/smali_classes8/com/sisensing/common/ble/BlePendingScanHf7.smali
+new file mode 100644
+--- /dev/null
++++ b/smali_classes8/com/sisensing/common/ble/BlePendingScanHf7.smali
+@@ -0,0 +1,536 @@
++.class public final Lcom/sisensing/common/ble/BlePendingScanHf7;
++.super Ljava/lang/Object;
++.source "BlePendingScanHf7.java"
++
++.field private static final REQUEST_SCAN:I = 0x1608
++
++.field private static active:Z
++
++.field private static cooldownUntilElapsed:J
++
++.field private static lastStartElapsed:J
++
++.field private static throttleCount:I
++
++.field private static lastThrottleElapsed:J
++
++
++.method private constructor <init>()V
++    .locals 0
++
++    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
++
++    return-void
++.end method
++
++.method private static pendingIntent(Landroid/content/Context;)Landroid/app/PendingIntent;
++    .locals 4
++
++    new-instance v0, Landroid/content/Intent;
++
++    const-class v1, Lcom/sisensing/common/ble/LocalBleService;
++
++    invoke-direct {v0, p0, v1}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
++
++    const-string v1, "com.sisensing.eco.action.BLE_SCAN_WAKE_HF7"
++
++    invoke-virtual {v0, v1}, Landroid/content/Intent;->setAction(Ljava/lang/String;)Landroid/content/Intent;
++
++    const/16 v1, 0x1608
++
++    # BluetoothLeScanner fills EXTRA_LIST_SCAN_RESULT into the delivered
++    # Intent. Android 12+ therefore needs an explicitly mutable PendingIntent;
++    # older releases are mutable by default. The Intent is explicit and points
++    # at our non-exported service, so mutability cannot redirect the target.
++    sget v2, Landroid/os/Build$VERSION;->SDK_INT:I
++
++    const/16 v3, 0x1f
++
++    if-lt v2, v3, :cond_pre_s
++
++    const v2, 0xa000000
++
++    goto :goto_flags
++
++    :cond_pre_s
++    const v2, 0x8000000
++
++    :goto_flags
++
++    invoke-static {p0, v1, v0, v2}, Landroid/app/PendingIntent;->getService(Landroid/content/Context;ILandroid/content/Intent;I)Landroid/app/PendingIntent;
++
++    move-result-object p0
++
++    return-object p0
++.end method
++
++.method public static handleIntent(Lcom/sisensing/common/ble/LocalBleService;Landroid/content/Intent;)Z
++    .locals 4
++
++    if-eqz p1, :cond_ignore
++
++    # PendingIntent scan failures are delivered as extras, not through the
++    # callback used by the vendor SDK. hf7 ignored this and treated failures
++    # as target discoveries, feeding the restart loop.
++    const-string v0, "android.bluetooth.le.extra.ERROR_CODE"
++
++    invoke-virtual {p1, v0}, Landroid/content/Intent;->hasExtra(Ljava/lang/String;)Z
++
++    move-result v1
++
++    if-eqz v1, :cond_results
++
++    const/4 v1, -0x1
++
++    invoke-virtual {p1, v0, v1}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
++
++    move-result v0
++
++    if-eqz v0, :cond_results
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BlePendingScanHf7;->onError(Lcom/sisensing/common/ble/LocalBleService;I)V
++
++    const/4 p0, 0x0
++
++    return p0
++
++    :cond_results
++    const-string v0, "android.bluetooth.le.extra.LIST_SCAN_RESULT"
++
++    invoke-virtual {p1, v0}, Landroid/content/Intent;->getParcelableArrayListExtra(Ljava/lang/String;)Ljava/util/ArrayList;
++
++    move-result-object p1
++
++    if-eqz p1, :cond_empty
++
++    invoke-virtual {p1}, Ljava/util/ArrayList;->isEmpty()Z
++
++    move-result v0
++
++    if-nez v0, :cond_empty
++
++    const-string v0, "SCAN_TARGET_BATCH_HF8"
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    # The registered filters already restrict delivery to the active probe
++    # name or CGM service. Consume this lease once and hand control to the
++    # serialized vendor connection path.
++    invoke-static {p0}, Lcom/sisensing/common/ble/BlePendingScanHf7;->stop(Landroid/content/Context;)V
++
++    const/4 p0, 0x1
++
++    return p0
++
++    :cond_empty
++    const-string p1, "SCAN_WAKE_EMPTY_HF8"
++
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    :cond_ignore
++    const/4 p0, 0x0
++
++    return p0
++.end method
++
++.method public static isActive()Z
++    .locals 1
++
++    sget-boolean v0, Lcom/sisensing/common/ble/BlePendingScanHf7;->active:Z
++
++    return v0
++.end method
++
++.method public static isCoolingDown()Z
++    .locals 4
++
++    invoke-static {}, Lcom/sisensing/common/ble/BlePendingScanHf7;->remainingCooldown()J
++
++    move-result-wide v0
++
++    const-wide/16 v2, 0x0
++
++    cmp-long v0, v0, v2
++
++    if-lez v0, :cond_false
++
++    const/4 v0, 0x1
++
++    return v0
++
++    :cond_false
++    const/4 v0, 0x0
++
++    return v0
++.end method
++
++.method public static remainingCooldown()J
++    .locals 4
++
++    sget-wide v0, Lcom/sisensing/common/ble/BlePendingScanHf7;->cooldownUntilElapsed:J
++
++    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
++
++    move-result-wide v2
++
++    sub-long/2addr v0, v2
++
++    const-wide/16 v2, 0x0
++
++    cmp-long v2, v0, v2
++
++    if-lez v2, :cond_zero
++
++    return-wide v0
++
++    :cond_zero
++    const-wide/16 v0, 0x0
++
++    return-wide v0
++.end method
++
++.method public static onError(Lcom/sisensing/common/ble/LocalBleService;I)V
++    .locals 8
++
++    const-string v0, "SCAN_ERROR_CODE_HF8"
++
++    invoke-static {p0, v0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->logEventInt(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;I)V
++
++    const/4 v0, 0x0
++
++    sput-boolean v0, Lcom/sisensing/common/ble/BlePendingScanHf7;->active:Z
++
++    const/4 v0, 0x6
++
++    if-ne p1, v0, :cond_return
++
++    invoke-static {p0}, Lcom/sisensing/common/ble/BlePendingScanHf7;->stop(Landroid/content/Context;)V
++
++    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
++
++    move-result-wide v0
++
++    sget-wide v2, Lcom/sisensing/common/ble/BlePendingScanHf7;->lastThrottleElapsed:J
++
++    const-wide/16 v4, 0x0
++
++    cmp-long v6, v2, v4
++
++    if-eqz v6, :cond_first_throttle
++
++    sub-long v2, v0, v2
++
++    const-wide/32 v4, 0x1b7740
++
++    cmp-long v6, v2, v4
++
++    if-lez v6, :cond_repeat_throttle
++
++    :cond_first_throttle
++    const/4 v6, 0x1
++
++    goto :goto_throttle_count
++
++    :cond_repeat_throttle
++    sget v6, Lcom/sisensing/common/ble/BlePendingScanHf7;->throttleCount:I
++
++    add-int/lit8 v6, v6, 0x1
++
++    const/4 v7, 0x2
++
++    if-le v6, v7, :goto_throttle_count
++
++    move v6, v7
++
++    :goto_throttle_count
++    sput v6, Lcom/sisensing/common/ble/BlePendingScanHf7;->throttleCount:I
++
++    sput-wide v0, Lcom/sisensing/common/ble/BlePendingScanHf7;->lastThrottleElapsed:J
++
++    const/4 v7, 0x2
++
++    if-lt v6, v7, :cond_two_minute
++
++    const-wide/32 v2, 0x493e0
++
++    goto :goto_cooldown
++
++    :cond_two_minute
++    const-wide/32 v2, 0x1d4c0
++
++    :goto_cooldown
++
++    add-long/2addr v0, v2
++
++    sput-wide v0, Lcom/sisensing/common/ble/BlePendingScanHf7;->cooldownUntilElapsed:J
++
++    const-string p1, "SCAN_THROTTLE_COOLDOWN_MS_HF8"
++
++    invoke-static {p0, p1, v2, v3}, Lcom/sisensing/common/ble/BleReconnectV16;->logEventLong(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;J)V
++
++    # Replace any aggressive retry with one wake at the end of the hard
++    # cooldown. start() observes cooldownUntil and cannot bypass it.
++    invoke-static {p0}, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->cancel(Landroid/content/Context;)V
++
++    invoke-static {p0, v2, v3}, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->schedule(Lcom/sisensing/common/ble/LocalBleService;J)V
++
++    :cond_return
++    return-void
++.end method
++
++.method public static onConnectionVerified()V
++    .locals 2
++
++    const/4 v0, 0x0
++
++    sput v0, Lcom/sisensing/common/ble/BlePendingScanHf7;->throttleCount:I
++
++    const-wide/16 v0, 0x0
++
++    sput-wide v0, Lcom/sisensing/common/ble/BlePendingScanHf7;->lastThrottleElapsed:J
++
++    sput-wide v0, Lcom/sisensing/common/ble/BlePendingScanHf7;->cooldownUntilElapsed:J
++
++    return-void
++.end method
++
++.method public static start(Lcom/sisensing/common/ble/LocalBleService;)V
++    .locals 12
++
++    sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
++
++    const/16 v1, 0x1a
++
++    if-lt v0, v1, :cond_return
++
++    iget-boolean v0, p0, Lcom/sisensing/common/ble/LocalBleService;->s:Z
++
++    if-nez v0, :cond_return
++
++    iget v0, p0, Lcom/sisensing/common/ble/LocalBleService;->t:I
++
++    if-nez v0, :cond_return
++
++    invoke-static {}, Lcom/sisensing/common/ble/BleReconnectV16;->isTransitionInFlight()Z
++
++    move-result v0
++
++    if-nez v0, :cond_return
++
++    :cond_device
++    iget-object v0, p0, Lcom/sisensing/common/ble/LocalBleService;->B:Lcom/sisensing/common/entity/Device/DeviceEntity;
++
++    if-eqz v0, :cond_return
++
++    invoke-virtual {v0}, Lcom/sisensing/common/entity/Device/DeviceEntity;->getDeviceName()Ljava/lang/String;
++
++    move-result-object v0
++
++    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
++
++    move-result v2
++
++    if-nez v2, :cond_return
++
++    sget-boolean v2, Lcom/sisensing/common/ble/BlePendingScanHf7;->active:Z
++
++    if-nez v2, :cond_return
++
++    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
++
++    move-result-wide v2
++
++    sget-wide v4, Lcom/sisensing/common/ble/BlePendingScanHf7;->cooldownUntilElapsed:J
++
++    cmp-long v6, v2, v4
++
++    if-gez v6, :cond_min_interval
++
++    goto :cond_return
++
++    :cond_min_interval
++    sget-wide v4, Lcom/sisensing/common/ble/BlePendingScanHf7;->lastStartElapsed:J
++
++    const-wide/16 v6, 0x0
++
++    cmp-long v8, v4, v6
++
++    if-eqz v8, :cond_start_allowed
++
++    sub-long v4, v2, v4
++
++    const-wide/32 v6, 0xea60
++
++    cmp-long v8, v4, v6
++
++    if-ltz v8, :cond_return
++
++    :cond_start_allowed
++    sput-wide v2, Lcom/sisensing/common/ble/BlePendingScanHf7;->lastStartElapsed:J
++
++    :try_start_0
++    const-string v2, "bluetooth"
++
++    invoke-virtual {p0, v2}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
++
++    move-result-object v2
++
++    check-cast v2, Landroid/bluetooth/BluetoothManager;
++
++    invoke-virtual {v2}, Landroid/bluetooth/BluetoothManager;->getAdapter()Landroid/bluetooth/BluetoothAdapter;
++
++    move-result-object v2
++
++    if-eqz v2, :cond_return
++
++    invoke-virtual {v2}, Landroid/bluetooth/BluetoothAdapter;->getBluetoothLeScanner()Landroid/bluetooth/le/BluetoothLeScanner;
++
++    move-result-object v2
++
++    if-eqz v2, :cond_return
++
++    new-instance v3, Ljava/util/ArrayList;
++
++    invoke-direct {v3}, Ljava/util/ArrayList;-><init>()V
++
++    new-instance v4, Landroid/bluetooth/le/ScanFilter$Builder;
++
++    invoke-direct {v4}, Landroid/bluetooth/le/ScanFilter$Builder;-><init>()V
++
++    invoke-virtual {v4, v0}, Landroid/bluetooth/le/ScanFilter$Builder;->setDeviceName(Ljava/lang/String;)Landroid/bluetooth/le/ScanFilter$Builder;
++
++    invoke-virtual {v4}, Landroid/bluetooth/le/ScanFilter$Builder;->build()Landroid/bluetooth/le/ScanFilter;
++
++    move-result-object v0
++
++    invoke-interface {v3, v0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
++
++    new-instance v0, Landroid/bluetooth/le/ScanFilter$Builder;
++
++    invoke-direct {v0}, Landroid/bluetooth/le/ScanFilter$Builder;-><init>()V
++
++    new-instance v4, Landroid/os/ParcelUuid;
++
++    const-string v5, "0000ff30-0000-1000-8000-00805f9b34fb"
++
++    invoke-static {v5}, Ljava/util/UUID;->fromString(Ljava/lang/String;)Ljava/util/UUID;
++
++    move-result-object v5
++
++    invoke-direct {v4, v5}, Landroid/os/ParcelUuid;-><init>(Ljava/util/UUID;)V
++
++    invoke-virtual {v0, v4}, Landroid/bluetooth/le/ScanFilter$Builder;->setServiceUuid(Landroid/os/ParcelUuid;)Landroid/bluetooth/le/ScanFilter$Builder;
++
++    invoke-virtual {v0}, Landroid/bluetooth/le/ScanFilter$Builder;->build()Landroid/bluetooth/le/ScanFilter;
++
++    move-result-object v0
++
++    invoke-interface {v3, v0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
++
++    new-instance v0, Landroid/bluetooth/le/ScanSettings$Builder;
++
++    invoke-direct {v0}, Landroid/bluetooth/le/ScanSettings$Builder;-><init>()V
++
++    const/4 v4, 0x0
++
++    invoke-virtual {v0, v4}, Landroid/bluetooth/le/ScanSettings$Builder;->setScanMode(I)Landroid/bluetooth/le/ScanSettings$Builder;
++
++    const/4 v4, 0x2
++
++    invoke-virtual {v0, v4}, Landroid/bluetooth/le/ScanSettings$Builder;->setCallbackType(I)Landroid/bluetooth/le/ScanSettings$Builder;
++
++    invoke-virtual {v0}, Landroid/bluetooth/le/ScanSettings$Builder;->build()Landroid/bluetooth/le/ScanSettings;
++
++    move-result-object v0
++
++    invoke-static {p0}, Lcom/sisensing/common/ble/BlePendingScanHf7;->pendingIntent(Landroid/content/Context;)Landroid/app/PendingIntent;
++
++    move-result-object v4
++
++    invoke-virtual {v2, v3, v0, v4}, Landroid/bluetooth/le/BluetoothLeScanner;->startScan(Ljava/util/List;Landroid/bluetooth/le/ScanSettings;Landroid/app/PendingIntent;)I
++
++    move-result v0
++
++    const-string v2, "PENDING_SCAN_ARM_RC_HF8"
++
++    invoke-static {p0, v2, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEventInt(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;I)V
++
++    if-eqz v0, :cond_mark_active
++
++    const/4 v1, 0x1
++
++    if-ne v0, v1, :cond_start_error
++
++    :cond_mark_active
++    const/4 v1, 0x1
++
++    sput-boolean v1, Lcom/sisensing/common/ble/BlePendingScanHf7;->active:Z
++
++    return-void
++
++    :cond_start_error
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BlePendingScanHf7;->onError(Lcom/sisensing/common/ble/LocalBleService;I)V
++
++    return-void
++    :try_end_0
++    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
++
++    :catch_0
++    const/4 v0, 0x0
++
++    sput-boolean v0, Lcom/sisensing/common/ble/BlePendingScanHf7;->active:Z
++
++    const-string v0, "PENDING_SCAN_ARM_ERROR_HF8"
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    :cond_return
++    return-void
++.end method
++
++.method public static stop(Landroid/content/Context;)V
++    .locals 4
++
++    const/4 v0, 0x0
++
++    sput-boolean v0, Lcom/sisensing/common/ble/BlePendingScanHf7;->active:Z
++
++    sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
++
++    const/16 v1, 0x1a
++
++    if-lt v0, v1, :cond_return
++
++    :try_start_0
++    const-string v0, "bluetooth"
++
++    invoke-virtual {p0, v0}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
++
++    move-result-object v0
++
++    check-cast v0, Landroid/bluetooth/BluetoothManager;
++
++    invoke-virtual {v0}, Landroid/bluetooth/BluetoothManager;->getAdapter()Landroid/bluetooth/BluetoothAdapter;
++
++    move-result-object v0
++
++    if-eqz v0, :cond_return
++
++    invoke-virtual {v0}, Landroid/bluetooth/BluetoothAdapter;->getBluetoothLeScanner()Landroid/bluetooth/le/BluetoothLeScanner;
++
++    move-result-object v0
++
++    if-eqz v0, :cond_return
++
++    invoke-static {p0}, Lcom/sisensing/common/ble/BlePendingScanHf7;->pendingIntent(Landroid/content/Context;)Landroid/app/PendingIntent;
++
++    move-result-object v1
++
++    invoke-virtual {v0, v1}, Landroid/bluetooth/le/BluetoothLeScanner;->stopScan(Landroid/app/PendingIntent;)V
++    :try_end_0
++    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
++
++    :catch_0
++    :cond_return
++    return-void
++.end method
+diff --git a/smali_classes8/com/sisensing/common/ble/BleWakeSchedulerHf7.smali b/smali_classes8/com/sisensing/common/ble/BleWakeSchedulerHf7.smali
+new file mode 100644
+--- /dev/null
++++ b/smali_classes8/com/sisensing/common/ble/BleWakeSchedulerHf7.smali
+@@ -0,0 +1,473 @@
++.class public final Lcom/sisensing/common/ble/BleWakeSchedulerHf7;
++.super Ljava/lang/Object;
++.source "BleWakeSchedulerHf7.java"
++
++.field public static final ACTION_ALARM:Ljava/lang/String; = "com.sisensing.eco.action.BLE_RECONNECT_WAKE_HF7"
++
++.field public static final ACTION_SCAN:Ljava/lang/String; = "com.sisensing.eco.action.BLE_SCAN_WAKE_HF7"
++
++.field private static final REQUEST_ALARM:I = 0x1607
++
++.field private static generation:I
++
++.field private static alarmArmed:Z
++
++.field private static nextDueElapsed:J
++
++
++.method private constructor <init>()V
++    .locals 0
++
++    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
++
++    return-void
++.end method
++
++.method private static alarmIntent(Landroid/content/Context;IJ)Landroid/app/PendingIntent;
++    .locals 4
++
++    new-instance v0, Landroid/content/Intent;
++
++    const-class v1, Lcom/sisensing/common/ble/LocalBleService;
++
++    invoke-direct {v0, p0, v1}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
++
++    const-string v1, "com.sisensing.eco.action.BLE_RECONNECT_WAKE_HF7"
++
++    invoke-virtual {v0, v1}, Landroid/content/Intent;->setAction(Ljava/lang/String;)Landroid/content/Intent;
++
++    const-string v1, "hf7_generation"
++
++    invoke-virtual {v0, v1, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
++
++    const-string p1, "hf7_due_elapsed"
++
++    invoke-virtual {v0, p1, p2, p3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;J)Landroid/content/Intent;
++
++    const/16 p1, 0x1607
++
++    const/high16 p2, 0xc000000
++
++    invoke-static {p0, p1, v0, p2}, Landroid/app/PendingIntent;->getService(Landroid/content/Context;ILandroid/content/Intent;I)Landroid/app/PendingIntent;
++
++    move-result-object p0
++
++    return-object p0
++.end method
++
++.method public static cancel(Landroid/content/Context;)V
++    .locals 5
++
++    # Invalidate an alarm that was already queued for delivery before cancel.
++    sget v0, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->generation:I
++
++    add-int/lit8 v0, v0, 0x1
++
++    sput v0, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->generation:I
++
++    :try_start_0
++    const-string v0, "alarm"
++
++    invoke-virtual {p0, v0}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
++
++    move-result-object v0
++
++    check-cast v0, Landroid/app/AlarmManager;
++
++    const/4 v1, 0x0
++
++    const-wide/16 v2, 0x0
++
++    invoke-static {p0, v1, v2, v3}, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->alarmIntent(Landroid/content/Context;IJ)Landroid/app/PendingIntent;
++
++    move-result-object v1
++
++    invoke-virtual {v0, v1}, Landroid/app/AlarmManager;->cancel(Landroid/app/PendingIntent;)V
++
++    sget-boolean v0, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->alarmArmed:Z
++
++    const/4 v1, 0x0
++
++    sput-boolean v1, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->alarmArmed:Z
++
++    const-wide/16 v2, 0x0
++
++    sput-wide v2, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->nextDueElapsed:J
++
++    if-eqz v0, :cond_no_log
++
++    const-string v0, "ALARM_CANCEL_HF7"
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->log(Landroid/content/Context;Ljava/lang/String;)V
++
++    :cond_no_log
++    :try_end_0
++    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
++
++    :catch_0
++    return-void
++.end method
++
++.method private static acquireWake(Landroid/content/Context;)V
++    .locals 4
++
++    :try_start_0
++    const-string v0, "power"
++
++    invoke-virtual {p0, v0}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
++
++    move-result-object p0
++
++    check-cast p0, Landroid/os/PowerManager;
++
++    const/4 v0, 0x1
++
++    const-string v1, "com.sisensing.eco:ble-hf7-wake"
++
++    invoke-virtual {p0, v0, v1}, Landroid/os/PowerManager;->newWakeLock(ILjava/lang/String;)Landroid/os/PowerManager$WakeLock;
++
++    move-result-object p0
++
++    const/4 v0, 0x0
++
++    invoke-virtual {p0, v0}, Landroid/os/PowerManager$WakeLock;->setReferenceCounted(Z)V
++
++    const-wide/16 v0, 0x4e20
++
++    invoke-virtual {p0, v0, v1}, Landroid/os/PowerManager$WakeLock;->acquire(J)V
++    :try_end_0
++    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
++
++    :catch_0
++    return-void
++.end method
++
++.method public static schedule(Lcom/sisensing/common/ble/LocalBleService;J)V
++    .locals 10
++
++    :try_start_0
++    # No caller, including a manual/foreground retry, may shorten the hard
++    # scanner cooldown after Android returns SCAN_FAILED_*.
++    invoke-static {}, Lcom/sisensing/common/ble/BlePendingScanHf7;->remainingCooldown()J
++
++    move-result-wide v8
++
++    cmp-long v2, v8, p1
++
++    if-lez v2, :cond_delay_ready
++
++    move-wide p1, v8
++
++    :cond_delay_ready
++    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
++
++    move-result-wide v0
++
++    add-long/2addr v0, p1
++
++    # hf8 alarm lease: keep an already armed earlier deadline. hf7 canceled
++    # and recreated the alarm on every Handler/scan callback, producing
++    # hundreds of arms in minutes.
++    sget-boolean v2, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->alarmArmed:Z
++
++    if-eqz v2, :cond_arm
++
++    sget-wide v8, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->nextDueElapsed:J
++
++    const-wide/16 v6, 0x0
++
++    cmp-long v2, v8, v6
++
++    if-lez v2, :cond_arm
++
++    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
++
++    move-result-wide v6
++
++    cmp-long v2, v8, v6
++
++    if-lez v2, :cond_arm
++
++    cmp-long v2, v8, v0
++
++    if-gtz v2, :cond_arm
++
++    invoke-static {p0}, Lcom/sisensing/common/ble/BlePendingScanHf7;->start(Lcom/sisensing/common/ble/LocalBleService;)V
++
++    return-void
++
++    :cond_arm
++    sget v2, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->generation:I
++
++    add-int/lit8 v2, v2, 0x1
++
++    sput v2, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->generation:I
++
++    sput-wide v0, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->nextDueElapsed:J
++
++    invoke-static {p0, v2, v0, v1}, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->alarmIntent(Landroid/content/Context;IJ)Landroid/app/PendingIntent;
++
++    move-result-object v3
++
++    const-string v4, "alarm"
++
++    invoke-virtual {p0, v4}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
++
++    move-result-object v4
++
++    check-cast v4, Landroid/app/AlarmManager;
++
++    invoke-virtual {v4, v3}, Landroid/app/AlarmManager;->cancel(Landroid/app/PendingIntent;)V
++
++    sget v5, Landroid/os/Build$VERSION;->SDK_INT:I
++
++    const/16 v6, 0x17
++
++    const/4 v7, 0x2
++
++    if-lt v5, v6, :cond_legacy
++
++    invoke-virtual {v4, v7, v0, v1, v3}, Landroid/app/AlarmManager;->setAndAllowWhileIdle(IJLandroid/app/PendingIntent;)V
++
++    goto :goto_log
++
++    :cond_legacy
++    invoke-virtual {v4, v7, v0, v1, v3}, Landroid/app/AlarmManager;->set(IJLandroid/app/PendingIntent;)V
++
++    :goto_log
++    const/4 v5, 0x1
++
++    sput-boolean v5, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->alarmArmed:Z
++
++    const-string v1, "ALARM_ARM_GEN_HF8"
++
++    invoke-static {p0, v1, v2}, Lcom/sisensing/common/ble/BleReconnectV16;->logEventInt(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;I)V
++
++    const-string v0, "ALARM_DELAY_MS_HF8"
++
++    invoke-static {p0, v0, p1, p2}, Lcom/sisensing/common/ble/BleReconnectV16;->logEventLong(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;J)V
++
++    invoke-static {p0}, Lcom/sisensing/common/ble/BlePendingScanHf7;->start(Lcom/sisensing/common/ble/LocalBleService;)V
++
++    return-void
++    :try_end_0
++    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
++
++    :catch_0
++    const-string p1, "ALARM_ARM_ERROR_HF7"
++
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    return-void
++.end method
++
++.method public static handleServiceIntent(Lcom/sisensing/common/ble/LocalBleService;Landroid/content/Intent;)Z
++    .locals 7
++
++    if-eqz p1, :cond_not_hf7
++
++    invoke-virtual {p1}, Landroid/content/Intent;->getAction()Ljava/lang/String;
++
++    move-result-object v0
++
++    const-string v1, "com.sisensing.eco.action.BLE_RECONNECT_WAKE_HF7"
++
++    invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result v1
++
++    if-eqz v1, :cond_scan
++
++    const-string v1, "hf7_generation"
++
++    const/4 v2, -0x1
++
++    invoke-virtual {p1, v1, v2}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
++
++    move-result v1
++
++    sget v2, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->generation:I
++
++    if-nez v2, :cond_hf8_gen_known
++
++    # Static state is reset after process death. Adopt the generation carried
++    # by the one OS alarm that recreated this Service.
++    sput v1, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->generation:I
++
++    goto :cond_hf8_gen_valid
++
++    :cond_hf8_gen_known
++    if-eq v1, v2, :cond_hf8_gen_valid
++
++    const-string p1, "ALARM_STALE_GEN_IGNORED_HF8"
++
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    const/4 p0, 0x1
++
++    return p0
++
++    :cond_hf8_gen_valid
++    # This lease has now been consumed even when the user paused or another
++    # callback reached CONNECTED immediately before delivery.
++    const/4 v4, 0x0
++
++    sput-boolean v4, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->alarmArmed:Z
++
++    const-wide/16 v4, 0x0
++
++    sput-wide v4, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->nextDueElapsed:J
++
++    invoke-static {p0}, Lcom/sisensing/common/ble/BleColdStartRestoreHf6;->isManualStop(Landroid/content/Context;)Z
++
++    move-result v0
++
++    if-nez v0, :cond_hf8_manual_stop
++
++    iget-boolean v0, p0, Lcom/sisensing/common/ble/LocalBleService;->s:Z
++
++    if-nez v0, :cond_ignored
++
++    :cond_alarm_active
++    const-string v0, "hf7_due_elapsed"
++
++    const-wide/16 v1, 0x0
++
++    invoke-virtual {p1, v0, v1, v2}, Landroid/content/Intent;->getLongExtra(Ljava/lang/String;J)J
++
++    move-result-wide v0
++
++    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
++
++    move-result-wide v2
++
++    sub-long/2addr v2, v0
++
++    const-string p1, "ALARM_WAKE_DRIFT_MS_HF7"
++
++    invoke-static {p0, p1, v2, v3}, Lcom/sisensing/common/ble/BleReconnectV16;->logEventLong(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;J)V
++
++    # Re-attach static state to an OS-owned PendingIntent scan after process
++    # recreation. If the lease is alive, this alarm is a health tick only.
++    invoke-static {p0}, Lcom/sisensing/common/ble/BlePendingScanHf7;->start(Lcom/sisensing/common/ble/LocalBleService;)V
++
++    invoke-static {}, Lcom/sisensing/common/ble/BlePendingScanHf7;->isActive()Z
++
++    move-result v0
++
++    if-eqz v0, :cond_hf8_alarm_dispatch
++
++    const-string p1, "ALARM_SCAN_LEASE_HEALTH_HF8"
++
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    invoke-static {p0}, Lcom/sisensing/common/ble/BleReconnectV16;->onCycle(Lcom/sisensing/common/ble/LocalBleService;)V
++
++    const/4 p0, 0x1
++
++    return p0
++
++    :cond_hf8_alarm_dispatch
++
++    invoke-static {p0}, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->acquireWake(Landroid/content/Context;)V
++
++    iget-object p1, p0, Lcom/sisensing/common/ble/LocalBleService;->l1:Landroid/os/Handler;
++
++    const/16 v0, 0x3e8
++
++    invoke-virtual {p1, v0}, Landroid/os/Handler;->removeMessages(I)V
++
++    iget-object p0, p0, Lcom/sisensing/common/ble/LocalBleService;->l1:Landroid/os/Handler;
++
++    invoke-virtual {p0, v0}, Landroid/os/Handler;->sendEmptyMessage(I)Z
++
++    const/4 p0, 0x1
++
++    return p0
++
++    :cond_scan
++    const-string v1, "com.sisensing.eco.action.BLE_SCAN_WAKE_HF7"
++
++    invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result v0
++
++    if-eqz v0, :cond_not_hf7
++
++    invoke-static {p0}, Lcom/sisensing/common/ble/BleColdStartRestoreHf6;->isManualStop(Landroid/content/Context;)Z
++
++    move-result v0
++
++    if-nez v0, :cond_hf8_manual_stop
++
++    iget-boolean v0, p0, Lcom/sisensing/common/ble/LocalBleService;->s:Z
++
++    if-nez v0, :cond_ignored
++
++    iget v0, p0, Lcom/sisensing/common/ble/LocalBleService;->t:I
++
++    const/4 v1, 0x1
++
++    if-ne v0, v1, :cond_scan_active
++
++    goto :cond_ignored
++
++    :cond_scan_active
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BlePendingScanHf7;->handleIntent(Lcom/sisensing/common/ble/LocalBleService;Landroid/content/Intent;)Z
++
++    move-result v0
++
++    if-eqz v0, :cond_scan_consumed
++
++    const-string v0, "PENDING_SCAN_TARGET_WAKE_HF8"
++
++    invoke-static {p0, v0}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    invoke-static {p0}, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->acquireWake(Landroid/content/Context;)V
++
++    iget-object p1, p0, Lcom/sisensing/common/ble/LocalBleService;->l1:Landroid/os/Handler;
++
++    const/16 v0, 0x3e8
++
++    invoke-virtual {p1, v0}, Landroid/os/Handler;->removeMessages(I)V
++
++    iget-object p0, p0, Lcom/sisensing/common/ble/LocalBleService;->l1:Landroid/os/Handler;
++
++    invoke-virtual {p0, v0}, Landroid/os/Handler;->sendEmptyMessage(I)Z
++
++    :cond_scan_consumed
++    const/4 p0, 0x1
++
++    return p0
++
++    :cond_hf8_manual_stop
++    const/4 v0, 0x1
++
++    iput-boolean v0, p0, Lcom/sisensing/common/ble/LocalBleService;->s:Z
++
++    invoke-static {p0}, Lcom/sisensing/common/ble/BlePendingScanHf7;->stop(Landroid/content/Context;)V
++
++    invoke-static {p0}, Lcom/sisensing/common/ble/BleWakeSchedulerHf7;->cancel(Landroid/content/Context;)V
++
++    const-string p1, "WAKE_IGNORED_PERSISTED_MANUAL_STOP_HF8"
++
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    const/4 p0, 0x1
++
++    return p0
++
++    :cond_ignored
++    const-string p1, "WAKE_IGNORED_CONNECTED_OR_STOPPED_HF7"
++
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    const/4 p0, 0x1
++
++    return p0
++
++    :cond_not_hf7
++    const/4 p0, 0x0
++
++    return p0
++.end method
+diff --git a/smali_classes8/com/sisensing/common/ble/BleForegroundGuardHf8.smali b/smali_classes8/com/sisensing/common/ble/BleForegroundGuardHf8.smali
+new file mode 100644
+--- /dev/null
++++ b/smali_classes8/com/sisensing/common/ble/BleForegroundGuardHf8.smali
+@@ -0,0 +1,185 @@
++.class public final Lcom/sisensing/common/ble/BleForegroundGuardHf8;
++.super Ljava/lang/Object;
++.source "BleForegroundGuardHf8.java"
++
++.field private static ready:Z
++
++
++.method private constructor <init>()V
++    .locals 0
++
++    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
++
++    return-void
++.end method
++
++.method private static hasPrerequisites(Landroid/content/Context;)Z
++    .locals 3
++
++    sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
++
++    const/16 v1, 0x22
++
++    # Foreground-service type prerequisites are enforced at startForeground
++    # beginning on Android 14. Android 12/13 may legitimately start the service
++    # before the runtime Bluetooth permission flow completes.
++    if-lt v0, v1, :cond_true
++
++    const-string v1, "android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE"
++
++    invoke-virtual {p0, v1}, Landroid/content/Context;->checkSelfPermission(Ljava/lang/String;)I
++
++    move-result v1
++
++    if-nez v1, :cond_false
++
++    const-string v0, "android.permission.BLUETOOTH_CONNECT"
++
++    invoke-virtual {p0, v0}, Landroid/content/Context;->checkSelfPermission(Ljava/lang/String;)I
++
++    move-result v0
++
++    if-eqz v0, :cond_true
++
++    const-string v0, "android.permission.BLUETOOTH_SCAN"
++
++    invoke-virtual {p0, v0}, Landroid/content/Context;->checkSelfPermission(Ljava/lang/String;)I
++
++    move-result v0
++
++    if-eqz v0, :cond_true
++
++    const-string v0, "android.permission.BLUETOOTH_ADVERTISE"
++
++    invoke-virtual {p0, v0}, Landroid/content/Context;->checkSelfPermission(Ljava/lang/String;)I
++
++    move-result v0
++
++    if-eqz v0, :cond_true
++
++    :cond_false
++    const/4 p0, 0x0
++
++    return p0
++
++    :cond_true
++    const/4 p0, 0x1
++
++    return p0
++.end method
++
++.method public static start(Lcom/sisensing/common/ble/LocalBleService;ILandroid/app/Notification;)Z
++    .locals 4
++
++    const/4 v0, 0x0
++
++    sput-boolean v0, Lcom/sisensing/common/ble/BleForegroundGuardHf8;->ready:Z
++
++    sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
++
++    const/16 v1, 0x18
++
++    if-lt v0, v1, :cond_permissions
++
++    const-string v1, "user"
++
++    invoke-virtual {p0, v1}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
++
++    move-result-object v1
++
++    instance-of v2, v1, Landroid/os/UserManager;
++
++    if-eqz v2, :cond_permissions
++
++    check-cast v1, Landroid/os/UserManager;
++
++    invoke-virtual {v1}, Landroid/os/UserManager;->isUserUnlocked()Z
++
++    move-result v1
++
++    if-nez v1, :cond_permissions
++
++    const-string p1, "FGS_USER_LOCKED_HF8"
++
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    invoke-virtual {p0}, Landroid/app/Service;->stopSelf()V
++
++    const/4 p0, 0x0
++
++    return p0
++
++    :cond_permissions
++    invoke-static {p0}, Lcom/sisensing/common/ble/BleForegroundGuardHf8;->hasPrerequisites(Landroid/content/Context;)Z
++
++    move-result v1
++
++    if-nez v1, :cond_start
++
++    const-string p1, "FGS_PREREQ_MISSING_HF8"
++
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    invoke-virtual {p0}, Landroid/app/Service;->stopSelf()V
++
++    const/4 p0, 0x0
++
++    return p0
++
++    :cond_start
++    :try_start_0
++    const/16 v1, 0x1d
++
++    if-lt v0, v1, :cond_legacy
++
++    const/16 v0, 0x10
++
++    invoke-virtual {p0, p1, p2, v0}, Landroid/app/Service;->startForeground(ILandroid/app/Notification;I)V
++
++    goto :goto_success
++
++    :cond_legacy
++    invoke-virtual {p0, p1, p2}, Landroid/app/Service;->startForeground(ILandroid/app/Notification;)V
++
++    :goto_success
++    const/4 v0, 0x1
++
++    sput-boolean v0, Lcom/sisensing/common/ble/BleForegroundGuardHf8;->ready:Z
++
++    const/4 p0, 0x1
++    :try_end_0
++    .catch Ljava/lang/SecurityException; {:try_start_0 .. :try_end_0} :catch_security
++    .catch Ljava/lang/RuntimeException; {:try_start_0 .. :try_end_0} :catch_runtime
++
++    return p0
++
++    :catch_security
++    const-string p1, "FGS_START_SECURITY_HF8"
++
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    invoke-virtual {p0}, Landroid/app/Service;->stopSelf()V
++
++    const/4 p0, 0x0
++
++    return p0
++
++    :catch_runtime
++    const-string p1, "FGS_START_RUNTIME_HF8"
++
++    invoke-static {p0, p1}, Lcom/sisensing/common/ble/BleReconnectV16;->logEvent(Lcom/sisensing/common/ble/LocalBleService;Ljava/lang/String;)V
++
++    invoke-virtual {p0}, Landroid/app/Service;->stopSelf()V
++
++    const/4 p0, 0x0
++
++    return p0
++.end method
++
++.method public static isReady()Z
++    .locals 1
++
++    sget-boolean v0, Lcom/sisensing/common/ble/BleForegroundGuardHf8;->ready:Z
++
++    return v0
++.end method

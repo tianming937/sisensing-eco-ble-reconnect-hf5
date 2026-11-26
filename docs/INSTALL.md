@@ -1,5 +1,7 @@
 # 安装与使用说明
 
+> 本页保留 hf5 历史安装约束。当前公开附件为 hf8-r2/code46；请先阅读 [HF8_INSTALL.md](HF8_INSTALL.md) 和 [HF8_LIMITATIONS.md](HF8_LIMITATIONS.md)。
+
 本文分为“取得 APK”“选择安装路径”“完成系统设置”“验证自动重连”和“故障回退”五部分。请完整阅读后再操作。
 
 ## 1. 安装前准备

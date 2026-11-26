@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "baseline": "02.23.01.00-v16.1-hf6 (code44), project source tree",
+  "target": "02.23.01.00-v16.1-hf8 (code46, r2)",
+  "textHashNormalization": "UTF-8 without BOM, LF line endings",
+  "patchSha256": "7c895344500b0612d044f00db2a93f013e7af8e0ba8126ee452b6a52300db9cb",
+  "androidManifestSha256": "6c65eaac42d19356072a5a09fcf582ea10bdd23b7a42ae8839cf68f21e71ea25",
+  "files": [
+    {
+      "path": "apktool.yml",
+      "beforeSha256": "8f4831ee8f82f764a2274d6bb3656ccd358ee5ec2c91bf5f121b4570cac0c2ca",
+      "afterSha256": "4c97f97b2c01e711457d245c3febd8e6326540b5948bcf25f6238198d67dc98f"
+    },
+    {
+      "path": "smali_classes5/com/sisensing/common/ble/LocalBleService.smali",
+      "beforeSha256": "19714075aa7531d834542c2182dec3d52a718056316be19c6b2938603c5ffd38",
+      "afterSha256": "6f7197896b53e220fe0273937d93d75fb650d93b094575bcf20d9901e2496a40"
+    },
+    {
+      "path": "smali_classes5/com/sisensing/common/ble/LocalBleService$m.smali",
+      "beforeSha256": "e7ee75b60083174dda958ce40a12f7a2f2f0604445e1ecf36400644ff932b0dc",
+      "afterSha256": "eca192ecce53df5001d343d6950f2c670c8b6edf37d365b7771bb4525d500177"
+    },
+    {
+      "path": "smali_classes5/com/sisensing/common/ble/a.smali",
+      "beforeSha256": "4fc553046d53767f2c4944ff9a6bccd06f9e7c7e6a6707bd455be51f726fbbaf",
+      "afterSha256": "e0b566b9dbf29955a112a278f4e94983b8863e2c387d796e6545037288a2a10e"
+    },
+    {
+      "path": "smali_classes7/p/a$c.smali",
+      "beforeSha256": "6bde4200679de71c4a3336eeb12cd12ac282ef3348ed0d56e4f74ba322e41d38",
+      "afterSha256": "099a43a7927ae9c2df7083e14b80c9c461f3ff3dc14d4ba110f902924b73b946"
+    },
+    {
+      "path": "smali_classes8/com/sisensing/common/ble/BleReconnectV16.smali",
+      "beforeSha256": "e95b9c8d42513b2364b1e02481da99c8e860f43f0194096c6e20321e90036bef",
+      "afterSha256": "6cfff30bf52f0ea66ffac81c70a83a40a89e3d094d56609766ba226c23dc2ad7"
+    },
+    {
+      "path": "smali_classes8/com/sisensing/common/ble/BleAuditHf7.smali",
+      "beforeSha256": null,
+      "afterSha256": "c68cae7566434b9b603e32053eda52906a849eb3a3348781e68bdd8bda7a2853"
+    },
+    {
+      "path": "smali_classes8/com/sisensing/common/ble/BlePendingScanHf7.smali",
+      "beforeSha256": null,
+      "afterSha256": "ad7adef969b3b344e1e2c9bbdf9ddfcb89a61e59a8600a3a03f240dfa1435779"
+    },
+    {
+      "path": "smali_classes8/com/sisensing/common/ble/BleWakeSchedulerHf7.smali",
+      "beforeSha256": null,
+      "afterSha256": "f25c28543418fbf4aa0987cf269e30e3f1ffb68afd116bb763cce4cfbcdf9d8c"
+    },
+    {
+      "path": "smali_classes8/com/sisensing/common/ble/BleForegroundGuardHf8.smali",
+      "beforeSha256": null,
+      "afterSha256": "f444797a3f528ffab0038ace3a1d35c7bb104f0d5f431cf998d67713f5a4c94f"
+    }
+  ],
+  "compatibilityCopies": [
+    {
+      "source": "kotlin/annotation/annotation.kotlin_builtins",
+      "target": "unknown/kotlin/annotation/annotation.kotlin_builtins",
+      "sha256": "e5eeca63f4c5635660d306577a4e30926833513cb47e20ecea9ae6bbc3125995"
+    },
+    {
+      "source": "kotlin/collections/collections.kotlin_builtins",
+      "target": "unknown/kotlin/collections/collections.kotlin_builtins",
+      "sha256": "539b85c2403f6ef0638161ad99df7b11256412e9411335ed2ea3931a3efd7c76"
+    },
+    {
+      "source": "kotlin/coroutines/coroutines.kotlin_builtins",
+      "target": "unknown/kotlin/coroutines/coroutines.kotlin_builtins",
+      "sha256": "59a6d632b8a9f5dba26f2a689c3865e195351df7c3c08aa1669fe0df9f9eb883"
+    },
+    {
+      "source": "kotlin/internal/internal.kotlin_builtins",
+      "target": "unknown/kotlin/internal/internal.kotlin_builtins",
+      "sha256": "c76b70a3db1eccbe42ea91a53667d7661edfc615409d3d6e574b5843b1e2a05e"
+    },
+    {
+      "source": "kotlin/kotlin.kotlin_builtins",
+      "target": "unknown/kotlin/kotlin.kotlin_builtins",
+      "sha256": "7f25e682d9f83277112b3db9adfc1d577dc1d01cbf076477f416180f6794533c"
+    },
+    {
+      "source": "kotlin/ranges/ranges.kotlin_builtins",
+      "target": "unknown/kotlin/ranges/ranges.kotlin_builtins",
+      "sha256": "2b8775e1aabd4a95dbfc4cd9c0cc9ff03058202dfd9cd7ee5875ba3e9720f228"
+    },
+    {
+      "source": "kotlin/reflect/reflect.kotlin_builtins",
+      "target": "unknown/kotlin/reflect/reflect.kotlin_builtins",
+      "sha256": "1f5210ca940148b8252d5420b804d2568b4bbe11864f0290a77c576277da9857"
+    },
+    {
+      "source": "META-INF/services/a26",
+      "target": "unknown/META-INF/services/a26",
+      "sha256": "73ed9be0d2e22b338f850364fcb210462e1e949a4295351d5ed267999a4aa91e"
+    },
+    {
+      "source": "META-INF/services/b95",
+      "target": "unknown/META-INF/services/b95",
+      "sha256": "3cb99e25ea923e6f83e9dd4b1234f279ce0551fda8c96ee907d03c00cd592ffe"
+    },
+    {
+      "source": "META-INF/services/com.tencent.qcloud.tuicore.interfaces.TUIInitializer",
+      "target": "unknown/META-INF/services/com.tencent.qcloud.tuicore.interfaces.TUIInitializer",
+      "sha256": "d3a72e9b57fbf890d607681a83b0c89934c00677eb7d625cfc75c07ec9b5ec07"
+    },
+    {
+      "source": "META-INF/services/javax.ws.rs.ext.MessageBodyReader",
+      "target": "unknown/META-INF/services/javax.ws.rs.ext.MessageBodyReader",
+      "sha256": "9016f8d09e95cb6de3ac9900e2a28025dadb751b4bbe52b4251f0ff4ea7e3cf7"
+    },
+    {
+      "source": "META-INF/services/javax.ws.rs.ext.MessageBodyWriter",
+      "target": "unknown/META-INF/services/javax.ws.rs.ext.MessageBodyWriter",
+      "sha256": "9016f8d09e95cb6de3ac9900e2a28025dadb751b4bbe52b4251f0ff4ea7e3cf7"
+    },
+    {
+      "source": "META-INF/services/javax.ws.rs.ext.Providers",
+      "target": "unknown/META-INF/services/javax.ws.rs.ext.Providers",
+      "sha256": "9016f8d09e95cb6de3ac9900e2a28025dadb751b4bbe52b4251f0ff4ea7e3cf7"
+    },
+    {
+      "source": "META-INF/services/org.glassfish.jersey.internal.spi.AutoDiscoverable",
+      "target": "unknown/META-INF/services/org.glassfish.jersey.internal.spi.AutoDiscoverable",
+      "sha256": "8bfa994785a3fe8fa4f2b03af88459a1b5b5cb335bb60305bbdcb3dc00e047dc"
+    },
+    {
+      "source": "META-INF/services/wk1",
+      "target": "unknown/META-INF/services/wk1",
+      "sha256": "cc7e4561b02c2953c47555bda1002889b47dd3fb5def7fab294264de4cb8c37b"
+    }
+  ]
+}
